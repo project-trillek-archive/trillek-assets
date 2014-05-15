@@ -1,0 +1,66 @@
+diff --git a/include/resources/Mesh.hpp b/include/resources/Mesh.hpp
+index ba7de35..ce3c10a 100644
+--- a/include/resources/Mesh.hpp
++++ b/include/resources/Mesh.hpp
+@@ -10,7 +10,7 @@ namespace resource {
+ 
+ // Vertex data used for rendering or other purposes.
+ struct VertexData {
+-    VertexData() : position(0.0f, 0.0f, 0.0f) { }
++    VertexData() : position(0.0f, 0.0f, 0.0f), color(0.0f, 1.0f, 0.0f, 1.0f) { }
+     glm::vec3 position;
+     glm::vec4 color;
+     glm::vec3 normal;
+diff --git a/src/main.cpp b/src/main.cpp
+index ae702d4..9e16f1f 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -1,13 +1,47 @@
+ #include "OS.h"
++#include "resources/MD5Mesh.hpp"
++#include "resources/Shader.hpp"
++#include "resources/Material.hpp"
++#include "systems/Graphics.hpp"
++#include "systems/ResourceSystem.h"
++#include "components/Renderable.hpp"
++
+ 
+ int main(int argCount, char **argValues) {
+     trillek::OS os;
+     os.InitializeWindow(800, 600, "Trillek Client Core", 3, 0);
+ 
++    std::shared_ptr<trillek::resource::MD5Mesh> mesh(new trillek::resource::MD5Mesh());
++    mesh->SetFileName("assets/bob/bob_lamp_update.md5mesh");
++    mesh->Parse();
++    mesh->CalculateVertexPositions();
++    mesh->CalculateVertexNormals();
++    mesh->UpdateIndexList();
++
++    trillek::resource::ResourceSystem::GetInstance()->Add<trillek::resource::MD5Mesh>("bob", mesh);
++
++    std::shared_ptr<trillek::resource::Shader> shader(new trillek::resource::Shader());
++    shader->LoadFromFile(trillek::resource::Shader::VERTEX_SHADER, "assets/shaders/shade.vert");
++    shader->LoadFromFile(trillek::resource::Shader::FRAGMENT_SHADER, "assets/shaders/shade.frag");
++    shader->CreateAndLinkProgram();
++
++    trillek::resource::ResourceSystem::GetInstance()->Add<trillek::resource::Shader>("basic_shader", shader);
++
++    std::shared_ptr<trillek::graphics::Renderable> ren1(new trillek::graphics::Renderable());
++    ren1->SetMesh(mesh);
++    ren1->GetMaterial()->SetShader(shader);
++    ren1->UpdateBufferGroups();
++
++    trillek::graphics::GL gl;
++    gl.Start(os.GetWindowWidth(), os.GetWindowHeight());
++    gl.AddRenderable(0, ren1);
++
+     while (!os.Closing()) {
+         os.OSMessageLoop();
++        gl.Update(0);
++        os.SwapBuffers();
+     }
+ 
+     os.Terminate();
+-	return 0;
++    return 0;
+ }
