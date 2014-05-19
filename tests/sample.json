@@ -1,0 +1,1 @@
+{"resources":{"MD5Mesh":{"bob":{"filename":"assets/bob/bob_lamp_update.md5mesh"}},"Shader":{"basic_shader":{"vertex":"shade.vert","fragment":"shade.frag"}}},"entities":{"bob":{"id":0,"renderbale":{"mesh":"bob","shader":"basic_shader"}}}}
