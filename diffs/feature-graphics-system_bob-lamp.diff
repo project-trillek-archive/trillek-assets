@@ -12,10 +12,10 @@ index ba7de35..ce3c10a 100644
      glm::vec4 color;
      glm::vec3 normal;
 diff --git a/src/main.cpp b/src/main.cpp
-index 11ade82..89e2bdb 100644
+index e57d5f7..2d8e6fc 100644
 --- a/src/main.cpp
 +++ b/src/main.cpp
-@@ -2,19 +2,36 @@
+@@ -2,6 +2,11 @@
  #include "systems/json-parser.hpp"
  #include "systems/transform-system.hpp"
  #include "systems/ResourceSystem.h"
@@ -27,14 +27,13 @@ index 11ade82..89e2bdb 100644
  
  int main(int argCount, char **argValues) {
      trillek::OS os;
-     os.InitializeWindow(800, 600, "Trillek Client Core", 3, 0);
- 
-     trillek::system::TransformSystem::GetInstance();
--    trillek::system::ResourceSystem::GetInstance();
+@@ -15,10 +20,22 @@ int main(int argCount, char **argValues) {
+     trillek::system::ResourceSystem::GetInstance();
  
      trillek::system::JSONParser jparser;
-     jparser.Parse("assets/tests/sample.json");
- 
+-    jparser.Parse("assets/tests/sample.json");
++    jparser.Parse("assets/tests/sample.json"); 
++
 +    std::shared_ptr<trillek::graphics::Renderable> ren1(new trillek::graphics::Renderable());
 +    auto mesh = trillek::system::ResourceSystem::GetInstance()->Get<trillek::resource::MD5Mesh>("bob");
 +    ren1->SetMesh(mesh);
@@ -44,12 +43,18 @@ index 11ade82..89e2bdb 100644
 +    trillek::graphics::GL gl;
 +    gl.Start(os.GetWindowWidth(), os.GetWindowHeight());
 +    gl.AddRenderable(0, ren1);
-+
+ 
      while (!os.Closing()) {
          os.OSMessageLoop();
 +        gl.Update(0);
 +        os.SwapBuffers();
-+
      }
  
      os.Terminate();
+diff --git a/assets b/assets
+index 2aa30bc..ff9e041 160000
+--- a/assets
++++ b/assets
+@@ -1 +1 @@
+-Subproject commit 2aa30bc073dab0004f3b5396f231a454f51d9a76
++Subproject commit ff9e0412d17f0941c2460a2b13b7711501908780-dirty
