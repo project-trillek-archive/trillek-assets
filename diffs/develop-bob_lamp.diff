@@ -1,0 +1,90 @@
+diff --git a/include/systems/graphics.hpp b/include/systems/graphics.hpp
+index f50b3d1..e940d6d 100644
+--- a/include/systems/graphics.hpp
++++ b/include/systems/graphics.hpp
+@@ -12,6 +12,12 @@
+ #include <vector>
+ 
+ namespace trillek {
++namespace transform {
++
++class Transform;
++
++} // End of transform.
++
+ namespace graphics {
+ 
+ class Material;
+@@ -23,6 +29,7 @@ struct MaterialGroup {
+         std::vector<size_t> texture_indexes;
+         struct RenderableGroup {
+             std::shared_ptr<Renderable> renderable;
++            std::list<std::shared_ptr<transform::Transform>> instances;
+             size_t buffer_group_index;
+         };
+         std::list<RenderableGroup> renderable_groups;
+diff --git a/src/main.cpp b/src/main.cpp
+index 34b0424..4091af1 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -2,10 +2,15 @@
+ #include "systems/json-parser.hpp"
+ #include "systems/transform-system.hpp"
+ #include "systems/resource-system.hpp"
+-#include "systems/graphics.hpp"
+ #include <cstddef>
+ 
+ size_t gAllocatedSize = 0;
++#include "systems/graphics.hpp"
++#include "components/renderable.hpp"
++#include "resources/shader.hpp"
++#include "resources/material.hpp"
++#include "resources/md5mesh.hpp"
++#include "resources/transform.hpp"
+ 
+ int main(int argCount, char **argValues) {
+     trillek::OS os;
+@@ -22,9 +27,16 @@ int main(int argCount, char **argValues) {
+     trillek::json::System jparser;
+     jparser.Parse("assets/tests/sample.json");
+ 
++    std::shared_ptr<trillek::graphics::Renderable> ren1(new trillek::graphics::Renderable());
++    auto mesh = trillek::resource::System::GetInstance()->Get<trillek::resource::MD5Mesh>("bob");
++    ren1->SetMesh(mesh);
++    ren1->GetMaterial()->SetShader(trillek::resource::System::GetInstance()->Get<trillek::resource::Shader>("basic_shader"));
++    ren1->UpdateBufferGroups();
+ 
+     trillek::graphics::System gl;
+     gl.Start(os.GetWindowWidth(), os.GetWindowHeight());
++    trillek::transform::System::AddTransform(0);
++    gl.AddRenderable(0, ren1);
+ 
+     while (!os.Closing()) {
+         os.OSMessageLoop();
+diff --git a/src/systems/graphics.cpp b/src/systems/graphics.cpp
+index 231d33f..d9022dd 100644
+--- a/src/systems/graphics.cpp
++++ b/src/systems/graphics.cpp
+@@ -1,5 +1,6 @@
+ #include "systems/graphics.hpp"
+ #include "systems/resource-system.hpp"
++#include "systems/transform-system.hpp"
+ 
+ #include "resources/md5mesh.hpp"
+ #include "resources/shader.hpp"
+@@ -55,6 +56,7 @@ void System::Update(const double delta) const {
+                 glBindVertexArray(bufgrp->vao);
+                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufgrp->ibo);
+ 
++                // TODO: Loop through each transform instance and set the shader value.
+                 glDrawElements(GL_TRIANGLES, bufgrp->ibo_count, GL_UNSIGNED_INT, 0);
+             }
+         }
+@@ -128,6 +130,7 @@ void System::AddRenderable(const unsigned int entity_id, std::shared_ptr<Rendera
+         MaterialGroup::TextureGroup::RenderableGroup rengrp;
+         rengrp.renderable = ren;
+         rengrp.buffer_group_index = i;
++        rengrp.instances.push_back(transform::System::GetTransform(entity_id));
+ 
+         texgrp.renderable_groups.push_back(std::move(rengrp));
+         matgrp->texture_groups.push_back(std::move(texgrp));
