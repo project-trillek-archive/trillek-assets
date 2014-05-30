@@ -1,60 +1,31 @@
-diff --git a/include/resources/Mesh.hpp b/include/resources/Mesh.hpp
-index ba7de35..ce3c10a 100644
---- a/include/resources/Mesh.hpp
-+++ b/include/resources/Mesh.hpp
-@@ -10,7 +10,7 @@ namespace resource {
- 
- // Vertex data used for rendering or other purposes.
- struct VertexData {
--    VertexData() : position(0.0f, 0.0f, 0.0f) { }
-+    VertexData() : position(0.0f, 0.0f, 0.0f), color(0.0f, 1.0f, 0.0f, 1.0f) { }
-     glm::vec3 position;
-     glm::vec4 color;
-     glm::vec3 normal;
 diff --git a/src/main.cpp b/src/main.cpp
-index e57d5f7..2d8e6fc 100644
+index 34b0424..b56eaee 100644
 --- a/src/main.cpp
 +++ b/src/main.cpp
-@@ -2,6 +2,11 @@
- #include "systems/json-parser.hpp"
- #include "systems/transform-system.hpp"
- #include "systems/ResourceSystem.h"
-+#include "systems/Graphics.hpp"
-+#include "components/Renderable.hpp"
-+#include "resources/Shader.hpp"
-+#include "resources/Material.hpp"
-+#include "resources/MD5Mesh.hpp"
+@@ -7,6 +7,10 @@
  
+ size_t gAllocatedSize = 0;
+ 
++#include "components/renderable.hpp"
++#include "resources/shader.hpp"
++#include "resources/material.hpp"
++#include "resources/md5mesh.hpp"
  int main(int argCount, char **argValues) {
      trillek::OS os;
-@@ -15,10 +20,22 @@ int main(int argCount, char **argValues) {
-     trillek::system::ResourceSystem::GetInstance();
+ #if __APPLE__
+@@ -22,9 +26,15 @@ int main(int argCount, char **argValues) {
+     trillek::json::System jparser;
+     jparser.Parse("assets/tests/sample.json");
  
-     trillek::system::JSONParser jparser;
--    jparser.Parse("assets/tests/sample.json");
-+    jparser.Parse("assets/tests/sample.json"); 
-+
 +    std::shared_ptr<trillek::graphics::Renderable> ren1(new trillek::graphics::Renderable());
-+    auto mesh = trillek::system::ResourceSystem::GetInstance()->Get<trillek::resource::MD5Mesh>("bob");
++    auto mesh = trillek::resource::System::GetInstance()->Get<trillek::resource::MD5Mesh>("bob");
 +    ren1->SetMesh(mesh);
-+    ren1->GetMaterial()->SetShader(trillek::system::ResourceSystem::GetInstance()->Get<trillek::resource::Shader>("basic_shader"));
++    ren1->GetMaterial()->SetShader(trillek::resource::System::GetInstance()->Get<trillek::resource::Shader>("basic_shader"));
 +    ren1->UpdateBufferGroups();
-+
-+    trillek::graphics::GL gl;
-+    gl.Start(os.GetWindowWidth(), os.GetWindowHeight());
+ 
+     trillek::graphics::System gl;
+     gl.Start(os.GetWindowWidth(), os.GetWindowHeight());
 +    gl.AddRenderable(0, ren1);
  
      while (!os.Closing()) {
          os.OSMessageLoop();
-+        gl.Update(0);
-+        os.SwapBuffers();
-     }
- 
-     os.Terminate();
-diff --git a/assets b/assets
-index 2aa30bc..ff9e041 160000
---- a/assets
-+++ b/assets
-@@ -1 +1 @@
--Subproject commit 2aa30bc073dab0004f3b5396f231a454f51d9a76
-+Subproject commit ff9e0412d17f0941c2460a2b13b7711501908780-dirty
