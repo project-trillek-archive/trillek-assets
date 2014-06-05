@@ -1,9 +1,9 @@
 diff --git a/include/systems/graphics.hpp b/include/systems/graphics.hpp
-index f50b3d1..e940d6d 100644
+index 3b6a51d..9a2d129 100644
 --- a/include/systems/graphics.hpp
 +++ b/include/systems/graphics.hpp
-@@ -12,6 +12,12 @@
- #include <vector>
+@@ -14,6 +14,12 @@
+ #include "System.h"
  
  namespace trillek {
 +namespace transform {
@@ -15,7 +15,7 @@ index f50b3d1..e940d6d 100644
  namespace graphics {
  
  class Material;
-@@ -23,6 +29,7 @@ struct MaterialGroup {
+@@ -25,6 +31,7 @@ struct MaterialGroup {
          std::vector<size_t> texture_indexes;
          struct RenderableGroup {
              std::shared_ptr<Renderable> renderable;
@@ -24,10 +24,10 @@ index f50b3d1..e940d6d 100644
          };
          std::list<RenderableGroup> renderable_groups;
 diff --git a/src/main.cpp b/src/main.cpp
-index 34b0424..4091af1 100644
+index 404ac1f..d48c9f6 100644
 --- a/src/main.cpp
 +++ b/src/main.cpp
-@@ -2,10 +2,15 @@
+@@ -6,10 +6,15 @@
  #include "systems/json-parser.hpp"
  #include "systems/transform-system.hpp"
  #include "systems/resource-system.hpp"
@@ -43,8 +43,8 @@ index 34b0424..4091af1 100644
 +#include "resources/transform.hpp"
  
  int main(int argCount, char **argValues) {
-     trillek::OS os;
-@@ -22,9 +27,16 @@ int main(int argCount, char **argValues) {
+     // create the window
+@@ -27,8 +32,16 @@ int main(int argCount, char **argValues) {
      trillek::json::System jparser;
      jparser.Parse("assets/tests/sample.json");
  
@@ -53,26 +53,27 @@ index 34b0424..4091af1 100644
 +    ren1->SetMesh(mesh);
 +    ren1->GetMaterial()->SetShader(trillek::resource::System::GetInstance()->Get<trillek::resource::Shader>("basic_shader"));
 +    ren1->UpdateBufferGroups();
- 
-     trillek::graphics::System gl;
-     gl.Start(os.GetWindowWidth(), os.GetWindowHeight());
++
+     // start the graphic system
+     trillek::TrillekGame::GetGraphicSystem().Start(os.GetWindowWidth(), os.GetWindowHeight());
 +    trillek::transform::System::AddTransform(0);
-+    gl.AddRenderable(0, ren1);
++    trillek::TrillekGame::GetGraphicSystem().AddRenderable(0, ren1);
  
-     while (!os.Closing()) {
-         os.OSMessageLoop();
+     // we register the systems in this queue
+     std::queue<trillek::SystemBase*> systems;
 diff --git a/src/systems/graphics.cpp b/src/systems/graphics.cpp
-index 231d33f..d9022dd 100644
+index 9602de2..5fc7737 100644
 --- a/src/systems/graphics.cpp
 +++ b/src/systems/graphics.cpp
-@@ -1,5 +1,6 @@
+@@ -1,6 +1,7 @@
+ #include "TrillekGame.h"
  #include "systems/graphics.hpp"
  #include "systems/resource-system.hpp"
 +#include "systems/transform-system.hpp"
  
  #include "resources/md5mesh.hpp"
  #include "resources/shader.hpp"
-@@ -55,6 +56,7 @@ void System::Update(const double delta) const {
+@@ -56,6 +57,7 @@ void System::RunBatch() const {
                  glBindVertexArray(bufgrp->vao);
                  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufgrp->ibo);
  
@@ -80,7 +81,7 @@ index 231d33f..d9022dd 100644
                  glDrawElements(GL_TRIANGLES, bufgrp->ibo_count, GL_UNSIGNED_INT, 0);
              }
          }
-@@ -128,6 +130,7 @@ void System::AddRenderable(const unsigned int entity_id, std::shared_ptr<Rendera
+@@ -130,6 +132,7 @@ void System::AddRenderable(const unsigned int entity_id, std::shared_ptr<Rendera
          MaterialGroup::TextureGroup::RenderableGroup rengrp;
          rengrp.renderable = ren;
          rengrp.buffer_group_index = i;
