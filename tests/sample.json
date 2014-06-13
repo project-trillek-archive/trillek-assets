@@ -1,1 +1,70 @@
-{"resources":{"MD5Mesh":{"bob":{"filename":"assets/bob/bob_lamp_update.md5mesh"}},"Shader":{"basic_shader":{"vertex":"assets/shaders/shade.vert","fragment":"assets/shaders/shade.frag"}}},"transforms":{"0":{"position":{"x":0,"y":0,"z":0},"rotation":{"x":0,"y":0,"z":0},"scale":{"x":0,"y":0,"z":0}}},"entities":{"bob":{"id":0,"renderbale":{"mesh":"bob","shader":"basic_shader"}}}}
+{
+  "resources": {
+    "MD5Mesh": {
+      "bob": {
+        "filename": "assets/bob/bob_lamp_update.md5mesh"
+      }
+    },
+    "Shader": {
+      "basic_shader": {
+        "vertex": "assets/shaders/shade.vert",
+        "fragment": "assets/shaders/shade.frag"
+      }
+    }
+  },
+  "transforms": {
+    "0": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    "1": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 1.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    }
+  },
+  "entities": {
+    "bob": {
+      "id": 0,
+      "renderable": {
+        "mesh": "bob",
+        "shader": "basic_shader"
+      },
+      "camera": {
+        "mesh": "bob"
+      }
+    },
+    "steve": {
+      "id": 1,
+      "renderable": {
+        "mesh": "bob",
+        "shader": "basic_shader"
+      }
+    }
+  }
+}
