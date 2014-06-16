@@ -5,10 +5,16 @@
         "filename": "assets/bob/bob_lamp_update.md5mesh"
       }
     },
-    "Shader": {
+    "Text": {
+      "shade.v": {"filename": "assets/shaders/shade.vert"},
+      "shade.f": {"filename": "assets/shaders/shade.frag"}
+    }
+  },
+  "graphics": {
+    "shaders": {
       "basic_shader": {
-        "vertex": "assets/shaders/shade.vert",
-        "fragment": "assets/shaders/shade.frag"
+        "vertex": "shade.v",
+        "fragment": "shade.f"
       }
     }
   },
