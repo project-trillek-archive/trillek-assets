@@ -16,8 +16,8 @@
     "0": {
       "position": {
         "x": 0,
-        "y": 5,
-        "z": -10
+        "y": 0,
+        "z": 10
       },
       "rotation": {
         "radians": true,
