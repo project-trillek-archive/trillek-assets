@@ -5,6 +5,11 @@
         "filename": "assets/bob/bob_lamp_update.md5mesh"
       }
     },
+    "MD5Anim": {
+      "bob_animtion": {
+        "filename": "assets/bob/bob_lamp_update.md5anim"
+      }
+    },
     "Shader": {
       "basic_shader": {
         "vertex": "assets/shaders/shade.vert",
@@ -16,13 +21,13 @@
     "0": {
       "position": {
         "x": 0,
-        "y": 0,
+        "y": 5,
         "z": 10
       },
       "rotation": {
         "radians": true,
         "x": 0,
-        "y": 0.0,
+        "y": 0,
         "z": 0
       },
       "scale": {
@@ -51,15 +56,15 @@
     },
     "1001": {
       "position": {
-        "x": 0,
-        "y": 1,
-        "z": 0
+        "x": 5,
+        "y": 0,
+        "z": 5
       },
       "rotation": {
         "radians": true,
         "x": -1.5707,
         "y": 0,
-        "z": 0
+        "z": 1.5707
       },
       "scale": {
         "x": 1,
@@ -73,7 +78,8 @@
       "id": 1000,
       "renderable": {
         "mesh": "bob",
-        "shader": "basic_shader"
+        "shader": "basic_shader",
+        "animation": "bob_animtion"
       },
       "camera": {
         "mesh": "bob"
