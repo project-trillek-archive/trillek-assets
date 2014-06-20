@@ -1,96 +1,110 @@
 {
-  "resources": {
-    "MD5Mesh": {
-      "bob": {
-        "filename": "assets/bob/bob_lamp_update.md5mesh"
+  "resources" : {
+    "MD5Mesh" : {
+      "bob" : {
+        "filename" : "assets/bob/bob_lamp_update.md5mesh"
       }
     },
-    "MD5Anim": {
-      "bob_animtion": {
-        "filename": "assets/bob/bob_lamp_update.md5anim"
+    "MD5Anim" : {
+      "bob_animtion" : {
+        "filename" : "assets/bob/bob_lamp_update.md5anim"
       }
     },
-    "Shader": {
-      "basic_shader": {
-        "vertex": "assets/shaders/shade.vert",
-        "fragment": "assets/shaders/shade.frag"
+    "Shader" : {
+      "basic_shader" : {
+        "vertex" : "assets/shaders/shade.vert",
+        "fragment" : "assets/shaders/shade.frag"
       }
     }
   },
-  "transforms": {
-    "0": {
-      "position": {
-        "x": 0,
-        "y": 5,
-        "z": 10
+  "transforms" : {
+    "0" : {
+      "position" : {
+        "x" : 0,
+        "y" : 5,
+        "z" : 10
       },
-      "rotation": {
-        "radians": true,
-        "x": 0,
-        "y": 0,
-        "z": 0
+      "rotation" : {
+        "radians" : true,
+        "x" : 0,
+        "y" : 0,
+        "z" : 0
       },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
+      "scale" : {
+        "x" : 1,
+        "y" : 1,
+        "z" : 1
       }
     },
-    "1000": {
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
+    "1000" : {
+      "position" : {
+        "x" : 0,
+        "y" : 0,
+        "z" : 0
       },
-      "rotation": {
-        "radians": true,
-        "x": -1.5707,
-        "y": 0,
-        "z": 0
+      "rotation" : {
+        "radians" : true,
+        "x" : -1.5707,
+        "y" : 0,
+        "z" : 0
       },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
+      "scale" : {
+        "x" : 1,
+        "y" : 1,
+        "z" : 1
       }
     },
-    "1001": {
-      "position": {
-        "x": 5,
-        "y": 0,
-        "z": 5
+    "1001" : {
+      "position" : {
+        "x" : 5,
+        "y" : 0,
+        "z" : 5
       },
-      "rotation": {
-        "radians": true,
-        "x": -1.5707,
-        "y": 0,
-        "z": 1.5707
+      "rotation" : {
+        "radians" : true,
+        "x" : -1.5707,
+        "y" : 0,
+        "z" : 1.5707
       },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
+      "scale" : {
+        "x" : 1,
+        "y" : 1,
+        "z" : 1
       }
     }
   },
-  "entities": {
-    "bob": {
-      "id": 1000,
-      "renderable": {
-        "mesh": "bob",
-        "shader": "basic_shader",
-        "animation": "bob_animtion"
+  "entities" : {
+    "bob" : {
+      "id" : 1000,
+      "renderable" : {
+        "mesh" : "bob",
+        "shader" : "basic_shader",
+        "animation" : "bob_animtion"
       },
-      "camera": {
-        "mesh": "bob"
+      "camera" : {
+        "mesh" : "bob"
       }
     },
-    "steve": {
-      "id": 1001,
-      "renderable": {
-        "mesh": "bob",
-        "shader": "basic_shader"
+    "steve" : {
+      "id" : 1001,
+      "renderable" : {
+        "mesh" : "bob",
+        "shader" : "basic_shader"
       }
     }
-  }
+  },
+  "sounds" : [{
+      "id" : "music_track_1",
+      "src" : "assets/audio/music/stage7 - 8 bit mentality.ogg",
+      "loop" : false,
+      "volume" : 0.5,
+      "spatial" : false
+    }, {
+      "id" : "music_track_2",
+      "src" : "assets/audio/music/stage7 - 8 bit mentality.ogg",
+      "loop" : true,
+      "volume" : 1.0,
+      "spatial" : false
+    }
+  ]
 }
