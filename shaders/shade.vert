@@ -32,10 +32,9 @@ void main(void)
         }
 
         vec4 v_pos;
- 
         v_pos = view * (model * animated_pos);
-        ex_cvect = normalize(vec3(0,0,0)-animated_pos.xyz);
-        ex_nvect = normalize((view * (model * (vec4(norm+pos,1))) - animated_pos)).xyz;
+        ex_cvect = normalize(vec3(0,0,0) - v_pos.xyz);
+        ex_nvect = normalize((view * (model * (vec4(norm + animated_pos,1))) - v_pos)).xyz;
  
         ex_color = color;
         ex_tex1 = tex1;

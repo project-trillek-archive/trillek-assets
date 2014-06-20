@@ -1,5 +1,5 @@
 // fragment shader
-#version 130
+#version 330
  
 in vec4 ex_color;
 in vec3 ex_nvect;
