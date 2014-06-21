@@ -89,6 +89,9 @@
       },
       "camera" : {
         "mesh" : "bob"
+      },
+      "light" : {
+        "enabled" : true
       }
     },
     "steve" : {
