@@ -3,6 +3,9 @@
     "MD5Mesh" : {
       "bob" : {
         "filename" : "assets/bob/bob_lamp_update.md5mesh"
+      },
+      "mothership" : {
+        "filename" : "assets/mothership/mothership.md5mesh"
       }
     },
     "MD5Anim" : {
@@ -71,9 +74,43 @@
         "y" : 1,
         "z" : 1
       }
+    },
+    "1002" : {
+      "position" : {
+        "x" : 0,
+        "y" : -20,
+        "z" : 0
+      },
+      "rotation" : {
+        "radians" : true,
+        "x" : -1.5707,
+        "y" : 0,
+        "z" : 0
+      },
+      "scale" : {
+        "x" : 10,
+        "y" : 10,
+        "z" : 10
+      }
     }
   },
   "entities" : {
+    "camera" : {
+      "id" : 0,
+      "renderable" : {
+        "mesh" : "bob",
+        "shader" : "basic_shader",
+        "animation" : "bob_animtion"
+      },
+      "camera" : {
+        "mesh" : "bob"
+      },
+      "collidable" : {
+        "shape" : "capsule",
+        "radius" : 0.5,
+        "height" : 1.0
+      }
+    },
     "bob" : {
       "id" : 1000,
       "renderable" : {
@@ -83,6 +120,10 @@
       },
       "camera" : {
         "mesh" : "bob"
+      },
+      "collidable" : {
+        "shape" : "sphere",
+        "mesh" : "bob"
       }
     },
     "steve" : {
@@ -90,6 +131,17 @@
       "renderable" : {
         "mesh" : "bob",
         "shader" : "basic_shader"
+      }
+    },
+    "ship" : {
+      "id" : 1002,
+      "renderable" : {
+        "mesh" : "mothership",
+        "shader" : "basic_shader"
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "mothership"
       }
     }
   },
