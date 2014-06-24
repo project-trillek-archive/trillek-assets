@@ -6,6 +6,9 @@
       },
       "mothership" : {
         "filename" : "assets/mothership/mothership.md5mesh"
+      },
+      "hanger" : {
+        "filename" : "assets/rooms/hanger/hanger.md5mesh"
       }
     },
     "MD5Anim" : {
@@ -77,38 +80,49 @@
     },
     "1002" : {
       "position" : {
-        "x" : 0,
-        "y" : -20,
+        "x" : 5,
+        "y" : 5,
         "z" : 0
       },
       "rotation" : {
         "radians" : true,
-        "x" : -1.5707,
+        "x" : 0,
         "y" : 0,
         "z" : 0
       },
       "scale" : {
-        "x" : 10,
-        "y" : 10,
-        "z" : 10
+        "x" : 2,
+        "y" : 2,
+        "z" : 2
+      }
+    },
+    "1003" : {
+      "position" : {
+        "x" : 0,
+        "y" : 0,
+        "z" : 0
+      },
+      "rotation" : {
+        "radians" : true,
+        "x" : 1.5707,
+        "y" : 0,
+        "z" : 0
+      },
+      "scale" : {
+        "x" : 20,
+        "y" : 20,
+        "z" : 20
       }
     }
   },
   "entities" : {
     "camera" : {
       "id" : 0,
-      "renderable" : {
-        "mesh" : "bob",
-        "shader" : "basic_shader",
-        "animation" : "bob_animtion"
-      },
-      "camera" : {
-        "mesh" : "bob"
-      },
       "collidable" : {
         "shape" : "capsule",
         "radius" : 0.5,
-        "height" : 1.0
+        "height" : 1.0,
+        "disable_decativation" : true
       }
     },
     "bob" : {
@@ -122,8 +136,9 @@
         "mesh" : "bob"
       },
       "collidable" : {
-        "shape" : "sphere",
-        "mesh" : "bob"
+        "shape" : "dynamic_mesh",
+        "mesh" : "bob",
+        "disable_decativation" : true
       }
     },
     "steve" : {
@@ -141,7 +156,20 @@
       },
       "collidable" : {
         "shape" : "static_mesh",
-        "mesh" : "mothership"
+        "mesh" : "mothership",
+        "disable_decativation" : false
+      }
+    },
+    "hanger" : {
+      "id" : 1003,
+      "renderable" : {
+        "mesh" : "hanger",
+        "shader" : "basic_shader"
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "hanger",
+        "disable_decativation" : false
       }
     }
   },
