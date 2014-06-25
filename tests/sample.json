@@ -21,7 +21,34 @@
         "vertex": "shade.v",
         "fragment": "shade.f"
       }
-    }
+    },
+    "attachment": {
+      "color": {
+        "texture" : "color-0-out",
+        "target" : "color",
+        "number" : 0,
+        "clear" : [0, 0, 0, 0]
+      },
+      "depth": {
+        "texture" : "depth-out",
+        "target" : "depth",
+        "clear" : [0, 0]
+      }
+    },
+    "layer": {
+      "gbuf": {
+        "attach": ["color", "depth"]
+      }
+    },
+    "render-list": {
+      "scene-1": [
+        {"write-layer":"gbuf"},
+        {"clear": "all"},
+        {"render": "all-geometry"},
+        {"copy-layer":"gbuf", "type":"color", "to":null}
+      ]
+    },
+    "active-graph":"scene-1"
   },
   "transforms" : {
     "0" : {

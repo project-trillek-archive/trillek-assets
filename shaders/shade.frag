@@ -14,10 +14,13 @@ void main(void)
 {
     vec4 tci;
 
-    tci = texture(texUnit, ex_tex1) * vec4(dot(ex_cvect,ex_nvect));
+    tci = texture(texUnit, ex_tex1);
     if(tci == 0) {
         discard;
     }
+    if(tci.w != 0) {
+        tci *= vec4(dot(ex_cvect,ex_nvect));
+    }
 
-    end_result = vec4(tci.xyzw);
+    end_result = tci;
 }
