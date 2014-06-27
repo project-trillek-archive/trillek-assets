@@ -12,7 +12,8 @@
     },
     "Text": {
       "shade.v": {"filename": "assets/shaders/shade.vert"},
-      "shade.f": {"filename": "assets/shaders/shade.frag"}
+      "shade.f": {"filename": "assets/shaders/shade.frag"},
+      "quad.v": {"filename": "assets/shaders/quad.vert"}
     }
   },
   "graphics": {
@@ -20,6 +21,16 @@
       "basic_shader": {
         "vertex": "shade.v",
         "fragment": "shade.f"
+      },
+      "multi_shader": {
+        "vertex": "shade.v",
+        "fragment": {"filename": "assets/shaders/m_shade.frag"}
+      },
+      "lighting-pass": {
+        "vertex": "quad.v",
+        "fragment": {
+          "filename": "assets/shaders/lighting.frag"
+        }
       }
     },
     "attachment": {
@@ -27,6 +38,12 @@
         "texture" : "color-0-out",
         "target" : "color",
         "number" : 0,
+        "clear" : [0, 0, 0, 0]
+      },
+      "normal": {
+        "texture" : "color-1-out",
+        "target" : "color",
+        "number" : 1,
         "clear" : [0, 0, 0, 0]
       },
       "depth": {
@@ -37,7 +54,7 @@
     },
     "layer": {
       "gbuf": {
-        "attach": ["color", "depth"]
+        "attach": ["color", "normal", "depth"]
       }
     },
     "render-list": {
@@ -45,10 +62,15 @@
         {"write-layer":"gbuf"},
         {"clear": "all"},
         {"render": "all-geometry"},
-        {"copy-layer":"gbuf", "type":"color", "to":null}
+        {"write-layer":null},
+        {"bind-layer":"gbuf"},
+        {"render": "lighting"}
       ]
     },
-    "active-graph":"scene-1"
+    "settings":{
+      "active-graph" : "scene-1",
+      "lighting-shader" : "lighting-pass"
+    }
   },
   "transforms" : {
     "0" : {
@@ -111,7 +133,7 @@
       "id" : 1000,
       "renderable" : {
         "mesh" : "bob",
-        "shader" : "basic_shader",
+        "shader" : "multi_shader",
         "animation" : "bob_animtion"
       },
       "camera" : {
@@ -125,7 +147,7 @@
       "id" : 1001,
       "renderable" : {
         "mesh" : "bob",
-        "shader" : "basic_shader"
+        "shader" : "multi_shader"
       }
     }
   },
