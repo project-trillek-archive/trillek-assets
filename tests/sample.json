@@ -41,30 +41,39 @@
         "clear" : [0, 0, 0, 0]
       },
       "normal": {
-        "texture" : "color-1-out",
+        "texture" : "normals-out",
         "target" : "color",
         "number" : 1,
+        "clear" : [0.5, 0.5, 0.5, 0]
+      },
+      "light": {
+        "texture" : "light-level",
+        "target" : "color",
+        "number" : 0,
         "clear" : [0, 0, 0, 0]
       },
       "depth": {
         "texture" : "depth-out",
         "target" : "depth",
-        "clear" : [0, 0]
+        "clear" : [1000000.0, 0]
       }
     },
     "layer": {
       "gbuf": {
         "attach": ["color", "normal", "depth"]
+      },
+      "light-accum": {
+        "attach": ["light"]
       }
     },
     "render-list": {
       "scene-1": [
-        {"write-layer":"gbuf"},
-        {"clear": "all"},
+        {"draw-layer":"gbuf"},
         {"render": "all-geometry"},
-        {"write-layer":null},
+        {"draw-layer":"light-accum"},
         {"bind-layer":"gbuf"},
-        {"render": "lighting"}
+        {"render": "lighting"},
+        {"copy-layer":"light-accum", "to":null, "type":"color"}
       ]
     },
     "settings":{
@@ -90,6 +99,16 @@
         "y" : 1,
         "z" : 1
       }
+    },
+    "500":{
+      "position" : {"x":-4, "y":9, "z":-2},
+      "rotation" : {"radians":true,"x":0, "y":0, "z":0},
+      "scale" : {"x":1, "y":1, "z":1}
+    },
+    "501":{
+      "position" : {"x":7, "y":5, "z":9},
+      "rotation" : {"radians":true,"x":0, "y":0, "z":0},
+      "scale" : {"x":1, "y":1, "z":1}
     },
     "1000" : {
       "position" : {
@@ -138,9 +157,6 @@
       },
       "camera" : {
         "mesh" : "bob"
-      },
-      "light" : {
-        "enabled" : true
       }
     },
     "steve" : {
@@ -149,6 +165,14 @@
         "mesh" : "bob",
         "shader" : "multi_shader"
       }
+    },
+    "el1" : {
+      "id" : 500,
+      "light" : {"enabled" : true}
+    },
+    "el2" : {
+      "id" : 501,
+      "light" : {"enabled" : true}
     }
   },
   "sounds" : [{

@@ -1,24 +1,25 @@
 // vertex shader
 #version 330
- 
+
 in vec3 pos;
 in vec3 norm;
 in vec4 color;
 in vec2 tex1;
 in ivec4 boneIndex;
 in vec4 boneWeight;
- 
+
 uniform mat4 projection;
 uniform mat4 view;
 uniform mat4 model;
 uniform mat4 animation_matrix[33];
 uniform int animated;
- 
+
 out vec4 ex_color;
 out vec3 ex_nvect;
 out vec3 ex_cvect;
 out vec2 ex_tex1;
- 
+out vec2 ex_depth;
+
 void main(void)
 {
     vec4 animated_pos = vec4(pos, 1.0);
@@ -41,9 +42,11 @@ void main(void)
     v_pos = view * (model * animated_pos);
     ex_cvect = normalize(vec3(0,0,0) - v_pos.xyz);
     ex_nvect = normalize((view * (model * animated_norm) - v_pos)).xyz;
- 
+
     ex_color = color;
     ex_tex1 = tex1;
- 
-    gl_Position = projection * v_pos;
+    vec4 p_pos = projection * v_pos;
+    ex_depth = p_pos.zw;
+
+    gl_Position = p_pos;
 }
