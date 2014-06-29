@@ -11,6 +11,8 @@ uniform vec3 light_pos;
 uniform vec3 light_dir;
 uniform vec3 light_color;
 
+uniform float radius;
+
 in vec2 ex_tex;
 
 out vec4 out_level;
@@ -37,7 +39,7 @@ void main(void)
     vec3 view_vec = normalize(-f_world_pos.xyz);
 
     float l_d = length(light_vec);
-    float atten = 1.0 - dot(light_vec, light_vec) / (200 * 200);
+    float atten = 1.0 - dot(light_vec, light_vec) / (radius * radius);
     light_vec = normalize(light_vec);
 
     float norm_dot = dot(sc_norm.xyz, light_vec);

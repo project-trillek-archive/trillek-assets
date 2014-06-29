@@ -168,11 +168,11 @@
     },
     "el1" : {
       "id" : 500,
-      "light" : {"enabled" : true}
+      "light" : {"enabled" : true, "color":[0,1,0], "radius":200 }
     },
     "el2" : {
       "id" : 501,
-      "light" : {"enabled" : true}
+      "light" : {"enabled" : true, "color":[1,1,1], "radius":200 }
     }
   },
   "sounds" : [{
