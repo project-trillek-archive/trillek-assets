@@ -9,7 +9,7 @@ joints {
 }
 
 mesh {
-	shader "assets/mothership/hangerdoorinnertop.png"
+	shader "hangerdoorinnertop.png"
 
 	numverts 84
 	vert 0 ( 1.000000 1.000000 ) 0 1
@@ -215,7 +215,7 @@ mesh {
 }
 
 mesh {
-	shader "assets/mothership/hangerdoorinnertop.png"
+	shader "hangerdoorinnertop.png"
 
 	numverts 24
 	vert 0 ( 0.018403 0.486018 ) 0 1
@@ -281,7 +281,7 @@ mesh {
 }
 
 mesh {
-	shader "assets/mothership/hangerdoorinnertop.png"
+	shader "hangerdoorinnertop.png"
 
 	numverts 24
 	vert 0 ( 1.000000 0.000000 ) 0 1
@@ -347,7 +347,7 @@ mesh {
 }
 
 mesh {
-	shader "assets/mothership/hangerdoorinnertop.png"
+	shader "hangerdoorinnertop.png"
 
 	numverts 24
 	vert 0 ( 0.000000 0.900275 ) 0 1
@@ -413,7 +413,7 @@ mesh {
 }
 
 mesh {
-	shader "assets/mothership/hangerdoorinnertop.png"
+	shader "hangerdoorinnertop.png"
 
 	numverts 12
 	vert 0 ( 0.000000 0.000000 ) 0 1
@@ -451,7 +451,7 @@ mesh {
 }
 
 mesh {
-	shader "assets/mothership/page0.png"
+	shader "page0.png"
 
 	numverts 294
 	vert 0 ( 0.103865 0.072891 ) 0 1
@@ -1147,7 +1147,7 @@ mesh {
 }
 
 mesh {
-	shader "assets/mothership/page0.png"
+	shader "page0.png"
 
 	numverts 135
 	vert 0 ( 0.245463 1.000000 ) 0 1
@@ -1472,7 +1472,7 @@ mesh {
 }
 
 mesh {
-	shader "assets/mothership/page0.png"
+	shader "page0.png"
 
 	numverts 132
 	vert 0 ( 0.356825 0.468750 ) 0 1
@@ -1790,7 +1790,7 @@ mesh {
 }
 
 mesh {
-	shader "assets/mothership/page0.png"
+	shader "page0.png"
 
 	numverts 162
 	vert 0 ( 0.227005 0.988914 ) 0 1
@@ -2178,7 +2178,7 @@ mesh {
 }
 
 mesh {
-	shader "assets/mothership/page0.png"
+	shader "page0.png"
 
 	numverts 24
 	vert 0 ( 0.500000 0.500000 ) 0 1
@@ -2244,7 +2244,7 @@ mesh {
 }
 
 mesh {
-	shader "assets/mothership/page0.png"
+	shader "page0.png"
 
 	numverts 12
 	vert 0 ( 1.029650 -1.009400 ) 0 1

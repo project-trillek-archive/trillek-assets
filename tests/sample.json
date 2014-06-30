@@ -27,26 +27,15 @@
     "0" : {
       "position" : {
         "x" : 0,
-        "y" : 5,
-        "z" : 10
-      },
-      "rotation" : {
-        "radians" : true,
-        "x" : 0,
-        "y" : 0,
-        "z" : 0
-      },
-      "scale" : {
-        "x" : 1,
         "y" : 1,
-        "z" : 1
+        "z" : 0
       }
     },
     "1000" : {
       "position" : {
         "x" : 0,
         "y" : 0,
-        "z" : 0
+        "z" : -1
       },
       "rotation" : {
         "radians" : true,
@@ -55,16 +44,16 @@
         "z" : 0
       },
       "scale" : {
-        "x" : 1,
-        "y" : 1,
-        "z" : 1
+        "x" : 0.25,
+        "y" : 0.25,
+        "z" : 0.25
       }
     },
     "1001" : {
       "position" : {
-        "x" : 5,
+        "x" : 1,
         "y" : 0,
-        "z" : 5
+        "z" : 1
       },
       "rotation" : {
         "radians" : true,
@@ -73,22 +62,16 @@
         "z" : 1.5707
       },
       "scale" : {
-        "x" : 1,
-        "y" : 1,
-        "z" : 1
+        "x" : 0.25,
+        "y" : 0.25,
+        "z" : 0.25
       }
     },
     "1002" : {
       "position" : {
-        "x" : 5,
-        "y" : 5,
-        "z" : 0
-      },
-      "rotation" : {
-        "radians" : true,
         "x" : 0,
         "y" : 0,
-        "z" : 0
+        "z" : 10
       },
       "scale" : {
         "x" : 2,
@@ -104,23 +87,22 @@
       },
       "rotation" : {
         "radians" : true,
-        "x" : 1.5707,
+        "x" : 0,
         "y" : 0,
         "z" : 0
       },
       "scale" : {
-        "x" : 20,
-        "y" : 20,
-        "z" : 20
+        "x" : 1,
+        "y" : 1,
+        "z" : 1
       }
     }
   },
   "entities" : {
     "camera" : {
-      "id" : 0,
       "collidable" : {
         "shape" : "capsule",
-        "radius" : 0.5,
+        "radius" : 0.3,
         "height" : 1.0,
         "disable_decativation" : true
       }
@@ -136,16 +118,20 @@
         "mesh" : "bob"
       },
       "collidable" : {
-        "shape" : "dynamic_mesh",
-        "mesh" : "bob",
-        "disable_decativation" : true
+        "shape" : "static_mesh",
+        "mesh" : "bob"
       }
     },
     "steve" : {
       "id" : 1001,
       "renderable" : {
         "mesh" : "bob",
-        "shader" : "basic_shader"
+        "shader" : "basic_shader",
+        "animation" : "bob_animtion"
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "bob"
       }
     },
     "ship" : {

@@ -41,7 +41,7 @@ joints {
 }
 
 mesh {
-	shader "assets/bob/bob_body.png"
+	shader "bob_body.png"
 
 	numverts 489
 	vert 0 ( 0.683594 0.455078 ) 0 3
@@ -2027,7 +2027,7 @@ mesh {
 }
 
 mesh {
-	shader "assets/bob/bob_head.png"
+	shader "bob_head.png"
 
 	numverts 116
 	vert 0 ( 0.455078 0.386719 ) 0 1
@@ -2460,7 +2460,7 @@ mesh {
 }
 
 mesh {
-	shader "assets/bob/bob_helmet.png"
+	shader "bob_helmet.png"
 
 	numverts 80
 	vert 0 ( 0.054688 0.992188 ) 0 1
@@ -2708,7 +2708,7 @@ mesh {
 }
 
 mesh {
-	shader "assets/bob/lantern.png"
+	shader "lantern.png"
 
 	numverts 18
 	vert 0 ( 0.625000 0.800781 ) 0 1
@@ -2770,7 +2770,7 @@ mesh {
 }
 
 mesh {
-	shader "assets/bob/lantern_top.png"
+	shader "lantern_top.png"
 
 	numverts 42
 	vert 0 ( 0.433594 0.037109 ) 0 1
@@ -2886,7 +2886,7 @@ mesh {
 }
 
 mesh {
-	shader "assets/bob/bob_body.png"
+	shader "bob_body.png"
 
 	numverts 135
 	vert 0 ( 0.162109 0.550781 ) 0 1
