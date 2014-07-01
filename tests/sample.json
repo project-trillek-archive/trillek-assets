@@ -178,7 +178,7 @@
         "shape" : "capsule",
         "radius" : 0.3,
         "height" : 1.0,
-        "disable_decativation" : true
+        "disable_deactivation" : true
       }
     },
     "bob" : {
@@ -217,7 +217,7 @@
       "collidable" : {
         "shape" : "static_mesh",
         "mesh" : "mothership",
-        "disable_decativation" : false
+        "disable_deactivation" : false
       }
     },
     "hanger" : {
@@ -229,7 +229,7 @@
       "collidable" : {
         "shape" : "static_mesh",
         "mesh" : "hanger",
-        "disable_decativation" : false
+        "disable_deactivation" : false
       }
     },
     "el1" : {
