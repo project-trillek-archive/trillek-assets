@@ -1,4 +1,4 @@
-// vertex shader
+// VERTEX shader
 #version 330
 
 in vec3 pos;

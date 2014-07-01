@@ -3,6 +3,12 @@
     "MD5Mesh" : {
       "bob" : {
         "filename" : "assets/bob/bob_lamp_update.md5mesh"
+      },
+      "mothership" : {
+        "filename" : "assets/mothership/mothership.md5mesh"
+      },
+      "hanger" : {
+        "filename" : "assets/rooms/hanger/hanger.md5mesh"
       }
     },
     "MD5Anim" : {
@@ -85,19 +91,8 @@
     "0" : {
       "position" : {
         "x" : 0,
-        "y" : 5,
-        "z" : 10
-      },
-      "rotation" : {
-        "radians" : true,
-        "x" : 0,
-        "y" : 0,
-        "z" : 0
-      },
-      "scale" : {
-        "x" : 1,
         "y" : 1,
-        "z" : 1
+        "z" : 0
       }
     },
     "500":{
@@ -114,7 +109,7 @@
       "position" : {
         "x" : 0,
         "y" : 0,
-        "z" : 0
+        "z" : -1
       },
       "rotation" : {
         "radians" : true,
@@ -123,22 +118,52 @@
         "z" : 0
       },
       "scale" : {
-        "x" : 1,
-        "y" : 1,
-        "z" : 1
+        "x" : 0.25,
+        "y" : 0.25,
+        "z" : 0.25
       }
     },
     "1001" : {
       "position" : {
-        "x" : 5,
+        "x" : 1,
         "y" : 0,
-        "z" : 5
+        "z" : 1
       },
       "rotation" : {
         "radians" : true,
         "x" : -1.5707,
         "y" : 0,
         "z" : 1.5707
+      },
+      "scale" : {
+        "x" : 0.25,
+        "y" : 0.25,
+        "z" : 0.25
+      }
+    },
+    "1002" : {
+      "position" : {
+        "x" : 0,
+        "y" : 0,
+        "z" : 10
+      },
+      "scale" : {
+        "x" : 2,
+        "y" : 2,
+        "z" : 2
+      }
+    },
+    "1003" : {
+      "position" : {
+        "x" : 0,
+        "y" : 0,
+        "z" : 0
+      },
+      "rotation" : {
+        "radians" : true,
+        "x" : 0,
+        "y" : 0,
+        "z" : 0
       },
       "scale" : {
         "x" : 1,
@@ -148,6 +173,14 @@
     }
   },
   "entities" : {
+    "camera" : {
+      "collidable" : {
+        "shape" : "capsule",
+        "radius" : 0.3,
+        "height" : 1.0,
+        "disable_decativation" : true
+      }
+    },
     "bob" : {
       "id" : 1000,
       "renderable" : {
@@ -157,6 +190,10 @@
       },
       "camera" : {
         "mesh" : "bob"
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "bob"
       }
     },
     "steve" : {
@@ -164,6 +201,35 @@
       "renderable" : {
         "mesh" : "bob",
         "shader" : "multi_shader"
+        "animation" : "bob_animtion"
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "bob"
+      }
+    },
+    "ship" : {
+      "id" : 1002,
+      "renderable" : {
+        "mesh" : "mothership",
+        "shader" : "multi_shader"
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "mothership",
+        "disable_decativation" : false
+      }
+    },
+    "hanger" : {
+      "id" : 1003,
+      "renderable" : {
+        "mesh" : "hanger",
+        "shader" : "multi_shader"
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "hanger",
+        "disable_decativation" : false
       }
     },
     "el1" : {
