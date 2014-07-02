@@ -17,7 +17,7 @@ void main(void)
     vec4 tci;
 
     tci = texture(texUnit, ex_tex1);
-    if(tci == 0) {
+    if(tci == vec4(0)) {
         discard;
     }
 
