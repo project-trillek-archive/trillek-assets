@@ -1,70 +1,192 @@
 {
-  "resources": {
-    "MD5Mesh": {
-      "bob": {
-        "filename": "assets/bob/bob_lamp_update.md5mesh"
+  "resources" : {
+    "MD5Mesh" : {
+      "bob" : {
+        "filename" : "assets/bob/bob_lamp_update.md5mesh"
       }
     },
-    "Shader": {
+    "MD5Anim" : {
+      "bob_animtion" : {
+        "filename" : "assets/bob/bob_lamp_update.md5anim"
+      }
+    },
+    "Text": {
+      "shade.v": {"filename": "assets/shaders/shade.vert"},
+      "shade.f": {"filename": "assets/shaders/shade.frag"},
+      "quad.v": {"filename": "assets/shaders/quad.vert"}
+    }
+  },
+  "graphics": {
+    "shaders": {
       "basic_shader": {
-        "vertex": "assets/shaders/shade.vert",
-        "fragment": "assets/shaders/shade.frag"
+        "vertex": "shade.v",
+        "fragment": "shade.f"
+      },
+      "multi_shader": {
+        "vertex": "shade.v",
+        "fragment": {"filename": "assets/shaders/m_shade.frag"}
+      },
+      "lighting-pass": {
+        "vertex": "quad.v",
+        "fragment": {
+          "filename": "assets/shaders/lighting.frag"
+        }
+      }
+    },
+    "attachment": {
+      "color": {
+        "texture" : "color-0-out",
+        "target" : "color",
+        "number" : 0,
+        "clear" : [0, 0, 0, 0]
+      },
+      "normal": {
+        "texture" : "normals-out",
+        "target" : "color",
+        "number" : 1,
+        "clear" : [0.5, 0.5, 0.5, 0]
+      },
+      "light": {
+        "texture" : "light-level",
+        "target" : "color",
+        "number" : 0,
+        "clear" : [0, 0, 0, 0]
+      },
+      "depth": {
+        "texture" : "depth-out",
+        "target" : "depth",
+        "clear" : [1000000.0, 0]
+      }
+    },
+    "layer": {
+      "gbuf": {
+        "attach": ["color", "normal", "depth"]
+      },
+      "light-accum": {
+        "attach": ["light"]
+      }
+    },
+    "render-list": {
+      "scene-1": [
+        {"draw-layer":"gbuf"},
+        {"render": "all-geometry"},
+        {"draw-layer":"light-accum"},
+        {"bind-layer":"gbuf"},
+        {"render": "lighting"},
+        {"copy-layer":"light-accum", "to":null, "type":"color"}
+      ]
+    },
+    "settings":{
+      "active-graph" : "scene-1",
+      "lighting-shader" : "lighting-pass"
+    }
+  },
+  "transforms" : {
+    "0" : {
+      "position" : {
+        "x" : 0,
+        "y" : 5,
+        "z" : 10
+      },
+      "rotation" : {
+        "radians" : true,
+        "x" : 0,
+        "y" : 0,
+        "z" : 0
+      },
+      "scale" : {
+        "x" : 1,
+        "y" : 1,
+        "z" : 1
+      }
+    },
+    "500":{
+      "position" : {"x":-4, "y":9, "z":-2},
+      "rotation" : {"radians":true,"x":0, "y":0, "z":0},
+      "scale" : {"x":1, "y":1, "z":1}
+    },
+    "501":{
+      "position" : {"x":7, "y":5, "z":9},
+      "rotation" : {"radians":true,"x":0, "y":0, "z":0},
+      "scale" : {"x":1, "y":1, "z":1}
+    },
+    "1000" : {
+      "position" : {
+        "x" : 0,
+        "y" : 0,
+        "z" : 0
+      },
+      "rotation" : {
+        "radians" : true,
+        "x" : -1.5707,
+        "y" : 0,
+        "z" : 0
+      },
+      "scale" : {
+        "x" : 1,
+        "y" : 1,
+        "z" : 1
+      }
+    },
+    "1001" : {
+      "position" : {
+        "x" : 5,
+        "y" : 0,
+        "z" : 5
+      },
+      "rotation" : {
+        "radians" : true,
+        "x" : -1.5707,
+        "y" : 0,
+        "z" : 1.5707
+      },
+      "scale" : {
+        "x" : 1,
+        "y" : 1,
+        "z" : 1
       }
     }
   },
-  "transforms": {
-    "0": {
-      "position": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
+  "entities" : {
+    "bob" : {
+      "id" : 1000,
+      "renderable" : {
+        "mesh" : "bob",
+        "shader" : "multi_shader",
+        "animation" : "bob_animtion"
       },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
+      "camera" : {
+        "mesh" : "bob"
       }
     },
-    "1": {
-      "position": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 1.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "scale": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
+    "steve" : {
+      "id" : 1001,
+      "renderable" : {
+        "mesh" : "bob",
+        "shader" : "multi_shader"
       }
+    },
+    "el1" : {
+      "id" : 500,
+      "light" : {"enabled" : true, "color":[0,1,0], "radius":200 }
+    },
+    "el2" : {
+      "id" : 501,
+      "light" : {"enabled" : true, "color":[1,1,1], "radius":200 }
     }
   },
-  "entities": {
-    "bob": {
-      "id": 0,
-      "renderable": {
-        "mesh": "bob",
-        "shader": "basic_shader"
-      },
-      "camera": {
-        "mesh": "bob"
-      }
-    },
-    "steve": {
-      "id": 1,
-      "renderable": {
-        "mesh": "bob",
-        "shader": "basic_shader"
-      }
+  "sounds" : [{
+      "id" : "music_track_1",
+      "src" : "assets/audio/music/stage7 - 8 bit mentality.ogg",
+      "loop" : false,
+      "volume" : 0.5,
+      "spatial" : false
+    }, {
+      "id" : "music_track_2",
+      "src" : "assets/audio/music/stage7 - 8 bit mentality.ogg",
+      "loop" : true,
+      "volume" : 1.0,
+      "spatial" : false
     }
-  }
+  ]
 }
