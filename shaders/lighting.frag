@@ -13,9 +13,20 @@ uniform vec3 light_color;
 
 uniform float radius;
 
+uniform int shadow_enabled;
+uniform mat4x4 shadow_matrix;
+uniform sampler2D shadow_depth;
+
 in vec2 ex_tex;
 
 out vec4 out_level;
+
+const vec2 blur[4] = vec2[](
+    vec2(-0.94201624,-0.39906216 ),
+    vec2( 0.94558609,-0.76890725 ),
+    vec2(-0.49418411,-0.92938870 ),
+    vec2( 0.34495938, 0.19387760 )
+);
 
 void main(void)
 {
@@ -33,6 +44,7 @@ void main(void)
         discard; // this does not seem to catch anything, should be empty space
     }
     f_world_pos = inv_proj * vec4(ex_tex * 2.0 - 1.0, w_depth, 1.0);
+    float f_w = f_world_pos.w;
     f_world_pos /= f_world_pos.w;
 
     vec3 light_vec = light_pos - f_world_pos.xyz;
@@ -54,6 +66,23 @@ void main(void)
         // light is facing away from this surface
         discard;
     }
+    vec4 shad_pos = vec4(0.0, 0.0, 0.0, 0.0);
+    if(shadow_enabled == 1) {
+        shad_pos = shadow_matrix * f_world_pos;
+        shad_pos /= shad_pos.w;
+        shad_pos = vec4(shad_pos.xy * 0.5 + 0.5, shad_pos.zw);
+    }
+    float s_depth;
+    float s_atten = 1.0;
+    if(shadow_enabled == 1) {
+        for(int i = 0; i < 4; i++) {
+            s_depth = texture(shadow_depth, shad_pos.xy + blur[i] / 400.0).z;
+            if(s_depth < shad_pos.z + -0.02) {
+                s_atten -= (1.0 / 4.0);
+                //discard;
+            }
+        }
+    }
     float l_diffuse = max(norm_dot, 0.0);
 
     float l_specular = 0.0;
@@ -67,5 +96,5 @@ void main(void)
     //l_specular = pow(clamp(half_dot, 0.0, 1.0), sc_norm.w) * 0.2;
 
     vec3 light_level = sc_color.xyz * vec3(clamp(l_diffuse, 0.0, 1.0)) + vec3(ref_dot);
-    out_level = clamp(vec4(light_color * light_level * atten, 1.0), 0.0, 1.0);
+    out_level = clamp(vec4(light_color * light_level * atten * s_atten, 1.0), 0.0, 1.0);
 }

@@ -37,6 +37,10 @@
         "fragment": {
           "filename": "assets/shaders/lighting.frag"
         }
+      },
+      "shadow-test": {
+        "vertex": {"filename": "assets/shaders/proto_shadow.vert"},
+        "fragment": {"filename": "assets/shaders/proto_shadow.frag"}
       }
     },
     "attachment": {
@@ -62,6 +66,19 @@
         "texture" : "depth-out",
         "target" : "depth",
         "clear" : [1000000.0, 0]
+      },
+      "shadow-n": {
+        "texture" : "level-s",
+        "target" : "color",
+        "number" : 0,
+        "size" : [1024, 1024],
+        "clear" : [0, 0, 0, 0]
+      },
+      "shadow-d": {
+        "texture" : "depth-s",
+        "target" : "depth",
+        "size" : [1024, 1024],
+        "clear" : [1000000.0, 0]
       }
     },
     "layer": {
@@ -70,12 +87,19 @@
       },
       "light-accum": {
         "attach": ["light"]
+      },
+      "shadow-accum": {
+        "size" : [1024, 1024],
+        "attach": ["shadow-n", "shadow-d"]
       }
     },
     "render-list": {
       "scene-1": [
         {"draw-layer":"gbuf"},
         {"render": "all-geometry"},
+        {"draw-layer":"shadow-accum"},
+        {"bind-layer":"gbuf"},
+        {"render": "depth-geometry"},
         {"draw-layer":"light-accum"},
         {"bind-layer":"gbuf"},
         {"render": "lighting"},
@@ -84,7 +108,8 @@
     },
     "settings":{
       "active-graph" : "scene-1",
-      "lighting-shader" : "lighting-pass"
+      "lighting-shader" : "lighting-pass",
+      "depth-shader" : "shadow-test"
     }
   },
   "transforms" : {
@@ -242,7 +267,7 @@
     },
     "el1" : {
       "id" : 500,
-      "light" : {"enabled" : true, "color":[0.9,0.9,1.0], "radius":20 }
+      "light" : {"enabled" : true, "color":[0.9,0.9,1.0], "radius":20, "shadow" : "depth-s"}
     },
     "el2" : {
       "id" : 501,
