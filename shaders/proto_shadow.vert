@@ -8,14 +8,10 @@ layout(location = 3) in vec2 tex1;
 layout(location = 4) in ivec4 boneIndex;
 layout(location = 5) in vec4 boneWeight;
 
-uniform sampler2D layer0;
-uniform sampler2D layer1;
-uniform sampler2D layer2;
-uniform sampler2D layer3;
-
 uniform vec3 light_pos;
 uniform mat4 light_vp;
 uniform mat4 light_ivp;
+
 uniform mat4 projection;
 uniform mat4 view;
 uniform mat4 model;

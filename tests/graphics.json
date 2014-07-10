@@ -11,13 +11,17 @@
       },
       "lighting-pass": {
         "vertex": "quad.v",
-        "fragment": {
-          "filename": "assets/shaders/lighting.frag"
-        }
+        "fragment": {"filename": "assets/shaders/lighting.frag"}
       },
       "shadow-test": {
         "vertex": {"filename": "assets/shaders/proto_shadow.vert"},
-        "fragment": {"filename": "assets/shaders/proto_shadow.frag"}
+        "fragment": {"filename": "assets/shaders/proto_shadow.frag"},
+        "colorbinding": {"out_depth": 0}
+      },
+      "post-pass": {
+        "vertex": "quad.v",
+        "fragment": {"filename": "assets/shaders/post.frag"},
+        "colorbinding": {"out_level": 0}
       }
     },
     "attachment": {
@@ -44,18 +48,11 @@
         "target" : "depth",
         "clear" : [1000000.0, 0]
       },
-      "shadow-n": {
-        "texture" : "level-s",
-        "target" : "color",
-        "number" : 0,
-        "size" : [1024, 1024],
-        "clear" : [0, 0, 0, 0]
-      },
       "shadow-d": {
         "texture" : "depth-s",
         "target" : "depth",
         "size" : [1024, 1024],
-        "clear" : [1000000.0, 0]
+        "clear" : [1, 0]
       }
     },
     "layer": {
@@ -66,24 +63,26 @@
         "attach": ["light"]
       },
       "shadow-accum": {
-        "size" : [1024, 1024],
-        "attach": ["shadow-n", "shadow-d"]
+        "size": [1024, 1024],
+        "attach": ["shadow-d"]
       }
     },
     "render-list": {
       "scene-1": [
-        {"draw-layer":"gbuf"},
+        {"draw-layer": "gbuf"},
         {"render": "all-geometry"},
-        {"draw-layer":"shadow-accum"},
-        {"bind-layer":"gbuf"},
+        {"draw-layer": "shadow-accum"},
+        {"bind-layer": "gbuf"},
         {"render": "depth-geometry"},
-        {"draw-layer":"light-accum"},
-        {"bind-layer":"gbuf"},
+        {"draw-layer": "light-accum"},
+        {"bind-layer": "gbuf"},
         {"render": "lighting"},
-        {"copy-layer":"light-accum", "to":null, "type":"color"}
+        {"draw-layer": null},
+        {"bind-layer": "light-accum"},
+        {"render": "post", "shader": "post-pass"}
       ]
     },
-    "settings":{
+    "settings": {
       "active-graph" : "scene-1",
       "lighting-shader" : "lighting-pass",
       "depth-shader" : "shadow-test"
