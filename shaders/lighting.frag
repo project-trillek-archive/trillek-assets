@@ -76,7 +76,7 @@ void main(void)
     float s_atten = 1.0;
     if(shadow_enabled == 1) {
         for(int i = 0; i < 4; i++) {
-            s_depth = texture(shadow_depth, shad_pos.xy + blur[i] / 400.0).z;
+            s_depth = texture(shadow_depth, shad_pos.xy + blur[i] / 400.0).r;
             if(s_depth < shad_pos.z + -0.02) {
                 s_atten -= (1.0 / 4.0);
                 //discard;
