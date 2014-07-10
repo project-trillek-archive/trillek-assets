@@ -1,0 +1,92 @@
+{
+  "graphics": {
+    "shaders": {
+      "basic_shader": {
+        "vertex": "shade.v",
+        "fragment": "shade.f"
+      },
+      "multi_shader": {
+        "vertex": "shade.v",
+        "fragment": {"filename": "assets/shaders/m_shade.frag"}
+      },
+      "lighting-pass": {
+        "vertex": "quad.v",
+        "fragment": {
+          "filename": "assets/shaders/lighting.frag"
+        }
+      },
+      "shadow-test": {
+        "vertex": {"filename": "assets/shaders/proto_shadow.vert"},
+        "fragment": {"filename": "assets/shaders/proto_shadow.frag"}
+      }
+    },
+    "attachment": {
+      "color": {
+        "texture" : "color-0-out",
+        "target" : "color",
+        "number" : 0,
+        "clear" : [0, 0, 0, 0]
+      },
+      "normal": {
+        "texture" : "normals-out",
+        "target" : "color",
+        "number" : 1,
+        "clear" : [0.5, 0.5, 0.5, 0]
+      },
+      "light": {
+        "texture" : "light-level",
+        "target" : "color",
+        "number" : 0,
+        "clear" : [0, 0, 0, 0]
+      },
+      "depth": {
+        "texture" : "depth-out",
+        "target" : "depth",
+        "clear" : [1000000.0, 0]
+      },
+      "shadow-n": {
+        "texture" : "level-s",
+        "target" : "color",
+        "number" : 0,
+        "size" : [1024, 1024],
+        "clear" : [0, 0, 0, 0]
+      },
+      "shadow-d": {
+        "texture" : "depth-s",
+        "target" : "depth",
+        "size" : [1024, 1024],
+        "clear" : [1000000.0, 0]
+      }
+    },
+    "layer": {
+      "gbuf": {
+        "attach": ["color", "normal", "depth"]
+      },
+      "light-accum": {
+        "attach": ["light"]
+      },
+      "shadow-accum": {
+        "size" : [1024, 1024],
+        "attach": ["shadow-n", "shadow-d"]
+      }
+    },
+    "render-list": {
+      "scene-1": [
+        {"draw-layer":"gbuf"},
+        {"render": "all-geometry"},
+        {"draw-layer":"shadow-accum"},
+        {"bind-layer":"gbuf"},
+        {"render": "depth-geometry"},
+        {"draw-layer":"light-accum"},
+        {"bind-layer":"gbuf"},
+        {"render": "lighting"},
+        {"copy-layer":"light-accum", "to":null, "type":"color"}
+      ]
+    },
+    "settings":{
+      "active-graph" : "scene-1",
+      "lighting-shader" : "lighting-pass",
+      "depth-shader" : "shadow-test"
+    }
+  }
+}

@@ -1,117 +1,7 @@
 {
-  "resources" : {
-    "MD5Mesh" : {
-      "bob" : {
-        "filename" : "assets/bob/bob_lamp_update.md5mesh"
-      },
-      "mothership" : {
-        "filename" : "assets/mothership/mothership.md5mesh"
-      },
-      "hanger" : {
-        "filename" : "assets/rooms/hanger/hanger.md5mesh"
-      }
-    },
-    "MD5Anim" : {
-      "bob_animtion" : {
-        "filename" : "assets/bob/bob_lamp_update.md5anim"
-      }
-    },
-    "Text": {
-      "shade.v": {"filename": "assets/shaders/shade.vert"},
-      "shade.f": {"filename": "assets/shaders/shade.frag"},
-      "quad.v": {"filename": "assets/shaders/quad.vert"}
-    }
-  },
-  "graphics": {
-    "shaders": {
-      "basic_shader": {
-        "vertex": "shade.v",
-        "fragment": "shade.f"
-      },
-      "multi_shader": {
-        "vertex": "shade.v",
-        "fragment": {"filename": "assets/shaders/m_shade.frag"}
-      },
-      "lighting-pass": {
-        "vertex": "quad.v",
-        "fragment": {
-          "filename": "assets/shaders/lighting.frag"
-        }
-      },
-      "shadow-test": {
-        "vertex": {"filename": "assets/shaders/proto_shadow.vert"},
-        "fragment": {"filename": "assets/shaders/proto_shadow.frag"}
-      }
-    },
-    "attachment": {
-      "color": {
-        "texture" : "color-0-out",
-        "target" : "color",
-        "number" : 0,
-        "clear" : [0, 0, 0, 0]
-      },
-      "normal": {
-        "texture" : "normals-out",
-        "target" : "color",
-        "number" : 1,
-        "clear" : [0.5, 0.5, 0.5, 0]
-      },
-      "light": {
-        "texture" : "light-level",
-        "target" : "color",
-        "number" : 0,
-        "clear" : [0, 0, 0, 0]
-      },
-      "depth": {
-        "texture" : "depth-out",
-        "target" : "depth",
-        "clear" : [1000000.0, 0]
-      },
-      "shadow-n": {
-        "texture" : "level-s",
-        "target" : "color",
-        "number" : 0,
-        "size" : [1024, 1024],
-        "clear" : [0, 0, 0, 0]
-      },
-      "shadow-d": {
-        "texture" : "depth-s",
-        "target" : "depth",
-        "size" : [1024, 1024],
-        "clear" : [1000000.0, 0]
-      }
-    },
-    "layer": {
-      "gbuf": {
-        "attach": ["color", "normal", "depth"]
-      },
-      "light-accum": {
-        "attach": ["light"]
-      },
-      "shadow-accum": {
-        "size" : [1024, 1024],
-        "attach": ["shadow-n", "shadow-d"]
-      }
-    },
-    "render-list": {
-      "scene-1": [
-        {"draw-layer":"gbuf"},
-        {"render": "all-geometry"},
-        {"draw-layer":"shadow-accum"},
-        {"bind-layer":"gbuf"},
-        {"render": "depth-geometry"},
-        {"draw-layer":"light-accum"},
-        {"bind-layer":"gbuf"},
-        {"render": "lighting"},
-        {"copy-layer":"light-accum", "to":null, "type":"color"}
-      ]
-    },
-    "settings":{
-      "active-graph" : "scene-1",
-      "lighting-shader" : "lighting-pass",
-      "depth-shader" : "shadow-test"
-    }
-  },
+  "resource_file": "@resources.json",
+  "graphics_config": "@graphics.json",
+  "bob_entities": "@bob.json",
   "transforms" : {
     "10" : {
       "position" : {
@@ -134,42 +24,6 @@
       "position" : {"x":-3, "y":2, "z":13},
       "rotation" : {"radians":true,"x":0, "y":0, "z":0},
       "scale" : {"x":1, "y":1, "z":1}
-    },
-    "1000" : {
-      "position" : {
-        "x" : 0,
-        "y" : 0,
-        "z" : -1
-      },
-      "rotation" : {
-        "radians" : true,
-        "x" : -1.5707,
-        "y" : 0,
-        "z" : 0
-      },
-      "scale" : {
-        "x" : 0.25,
-        "y" : 0.25,
-        "z" : 0.25
-      }
-    },
-    "1001" : {
-      "position" : {
-        "x" : 1,
-        "y" : 0,
-        "z" : 1
-      },
-      "rotation" : {
-        "radians" : true,
-        "x" : -1.5707,
-        "y" : 0,
-        "z" : 1.5707
-      },
-      "scale" : {
-        "x" : 0.25,
-        "y" : 0.25,
-        "z" : 0.25
-      }
     },
     "1002" : {
       "position" : {
@@ -212,33 +66,6 @@
         "disable_deactivation" : true
       },
       "camera" : {
-      }
-    },
-    "bob" : {
-      "id" : 1000,
-      "renderable" : {
-        "mesh" : "bob",
-        "shader" : "multi_shader",
-        "animation" : "bob_animtion"
-      },
-      "camera" : {
-        "mesh" : "bob"
-      },
-      "collidable" : {
-        "shape" : "static_mesh",
-        "mesh" : "bob"
-      }
-    },
-    "steve" : {
-      "id" : 1001,
-      "renderable" : {
-        "mesh" : "bob",
-        "shader" : "multi_shader",
-        "animation" : "bob_animtion"
-      },
-      "collidable" : {
-        "shape" : "static_mesh",
-        "mesh" : "bob"
       }
     },
     "ship" : {

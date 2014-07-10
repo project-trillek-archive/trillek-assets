@@ -1,0 +1,17 @@
+{
+  "resources" : {
+    "MD5Mesh" : {
+      "mothership" : {
+        "filename" : "assets/mothership/mothership.md5mesh"
+      },
+      "hanger" : {
+        "filename" : "assets/rooms/hanger/hanger.md5mesh"
+      }
+    },
+    "Text": {
+      "shade.v": {"filename": "assets/shaders/shade.vert"},
+      "shade.f": {"filename": "assets/shaders/shade.frag"},
+      "quad.v": {"filename": "assets/shaders/quad.vert"}
+    }
+  }
+}
