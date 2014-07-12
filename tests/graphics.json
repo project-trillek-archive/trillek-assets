@@ -10,6 +10,7 @@
         "fragment": {"filename": "assets/shaders/m_shade.frag"}
       },
       "lighting-pass": {
+        "define": {"DEBUG_MODES": null},
         "vertex": "quad.v",
         "fragment": {"filename": "assets/shaders/lighting.frag"}
       },

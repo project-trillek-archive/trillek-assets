@@ -67,13 +67,23 @@ void main(void)
         discard;
     }
     vec4 shad_pos = vec4(0.0, 0.0, 0.0, 0.0);
-    if(shadow_enabled == 1) {
+    if(shadow_enabled != 0) {
         shad_pos = shadow_matrix * f_world_pos;
         shad_pos /= shad_pos.w;
         shad_pos = vec4(shad_pos.xy * 0.5 + 0.5, shad_pos.zw);
     }
     float s_depth;
     float s_atten = 1.0;
+#ifdef DEBUG_MODES
+    if(shadow_enabled == 2) {
+        s_depth = texture(shadow_depth, shad_pos.xy).r;
+        out_level = vec4(s_depth);
+        return;
+    } else if(shadow_enabled == 3) {
+        out_level = vec4(shad_pos.z);
+        return;
+    } else
+#endif
     if(shadow_enabled == 1) {
         for(int i = 0; i < 4; i++) {
             s_depth = texture(shadow_depth, shad_pos.xy + blur[i] / 400.0).r;
