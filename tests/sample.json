@@ -65,6 +65,10 @@
         "height" : 1.0,
         "disable_deactivation" : true
       },
+      "velocity" : {
+        "max_horizontal" : 10.0,
+        "max_angular" : 5.0
+      },
       "camera" : {
       }
     },
