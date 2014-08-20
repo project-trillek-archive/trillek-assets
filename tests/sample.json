@@ -1,61 +1,8 @@
 {
   "resource_file": "@resources.json",
+  "bob_entities": "@transforms.json",
   "graphics_config": "@graphics.json",
   "bob_entities": "@bob.json",
-  "transforms" : {
-    "10" : {
-      "position" : {
-        "x" : 0,
-        "y" : 1,
-        "z" : 0
-      }
-    },
-    "500":{
-      "position" : {"x":0, "y":2.8, "z":0},
-      "rotation" : {"radians":true,"x":0, "y":0, "z":0},
-      "scale" : {"x":1, "y":1, "z":1}
-    },
-    "501":{
-      "position" : {"x":2, "y":5, "z":12},
-      "rotation" : {"radians":true,"x":0, "y":0, "z":0},
-      "scale" : {"x":1, "y":1, "z":1}
-    },
-    "502":{
-      "position" : {"x":-3, "y":2, "z":13},
-      "rotation" : {"radians":true,"x":0, "y":0, "z":0},
-      "scale" : {"x":1, "y":1, "z":1}
-    },
-    "1002" : {
-      "position" : {
-        "x" : 0,
-        "y" : 0,
-        "z" : 10
-      },
-      "scale" : {
-        "x" : 2,
-        "y" : 2,
-        "z" : 2
-      }
-    },
-    "1003" : {
-      "position" : {
-        "x" : 0,
-        "y" : 0,
-        "z" : 0
-      },
-      "rotation" : {
-        "radians" : true,
-        "x" : 0,
-        "y" : 0,
-        "z" : 0
-      },
-      "scale" : {
-        "x" : 1,
-        "y" : 1,
-        "z" : 1
-      }
-    }
-  },
   "entities" : {
     "camera" : {
       "id" : 10,

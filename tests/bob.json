@@ -7,29 +7,18 @@
       "bob_animtion" : {"filename":"assets/bob/bob_lamp_update.md5anim"}
     }
   },
-  "transforms" : {
-    "1000" : {
-      "position" : {"z":-1},
-      "rotation" : {"radians":true, "x":-1.5707},
-      "scale" : {"x":0.25, "y":0.25, "z":0.25}
-    },
-    "1001" : {
-      "position" : { "x":1, "z":1},
-      "rotation" : {"radians":true, "x":-1.5707, "z" : 1.5707},
-      "scale" : {"x":0.25, "y":0.25, "z":0.25}
-    }
-  },
   "entities" : {
     "bob" : {
       "id" : 1000,
       "renderable" : {
         "mesh" : "bob",
         "shader" : "multi_shader",
+        "shape" : "static_mesh",
         "animation" : "bob_animtion"
       },
       "collidable" : {
-        "shape" : "static_mesh",
-        "mesh" : "bob"
+        "mesh" : "bob",
+        "shape" : "static_mesh"
       }
     },
     "steve" : {
