@@ -23,6 +23,12 @@
         "vertex": "quad.v",
         "fragment": {"filename": "assets/shaders/post.frag"},
         "colorbinding": {"out_level": 0}
+      },
+      "gui-pass": {
+        "vertex": {"filename": "assets/shaders/gui.vert"},
+        "fragment": {"filename": "assets/shaders/gui.frag"},
+        "attrbinding": {"in_pos": 0, "in_color": 1},
+        "colorbinding": {"out_color": 0}
       }
     },
     "attachment": {
@@ -80,13 +86,19 @@
         {"render": "lighting"},
         {"draw-layer": null},
         {"bind-layer": "light-accum"},
-        {"render": "post", "shader": "post-pass"}
+        {"render": "post", "shader": "post-pass"},
+        {"render": "gui"}
+      ],
+      "scene-test": [
+        {"draw-layer": null},
+        {"render": "gui"}
       ]
     },
     "settings": {
       "active-graph" : "scene-1",
       "lighting-shader" : "lighting-pass",
-      "depth-shader" : "shadow-test"
+      "depth-shader" : "shadow-test",
+      "gui-shader" : "gui-pass"
     }
   }
 }
