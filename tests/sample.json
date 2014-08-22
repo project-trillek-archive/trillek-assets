@@ -27,6 +27,17 @@
         "disable_deactivation" : false
       }
     },
+    "vidstand" : {
+      "id" : 1004,
+      "renderable" : {
+        "mesh" : "vidstand",
+        "shader" : "multi_shader"
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "vidstand",
+      }
+    },
     "hanger" : {
       "id" : 1003,
       "renderable" : {
