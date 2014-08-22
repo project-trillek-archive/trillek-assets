@@ -16,7 +16,6 @@
       },
       "shadow-test": {
         "vertex": {"filename": "assets/shaders/proto_shadow.vert"},
-        "fragment": {"filename": "assets/shaders/proto_shadow.frag"},
         "colorbinding": {"out_depth": 0}
       },
       "post-pass": {
@@ -51,7 +50,7 @@
       },
       "shadow-d": {
         "texture" : "depth-s",
-        "target" : "depth",
+        "target" : "depth-shadow",
         "size" : [1024, 1024],
         "clear" : [1, 0]
       }
