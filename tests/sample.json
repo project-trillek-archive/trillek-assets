@@ -1,7 +1,92 @@
 {
-  "resource_file": "@resources.json",
-  "graphics_config": "@graphics.json",
-  "bob_entities": "@bob.json",
+  "resources" : {
+    "MD5Mesh" : {
+      "bob" : {
+        "filename" : "assets/bob/bob_lamp_update.md5mesh"
+      },
+      "mothership" : {
+        "filename" : "assets/mothership/mothership.md5mesh"
+      },
+      "hanger" : {
+        "filename" : "assets/rooms/hanger/hanger.md5mesh"
+      }
+    },
+    "MD5Anim" : {
+      "bob_animtion" : {
+        "filename" : "assets/bob/bob_lamp_update.md5anim"
+      }
+    },
+    "Text": {
+      "shade.v": {"filename": "assets/shaders/shade.vert"},
+      "shade.f": {"filename": "assets/shaders/shade.frag"},
+      "quad.v": {"filename": "assets/shaders/quad.vert"}
+    }
+  },
+  "graphics": {
+    "shaders": {
+      "basic_shader": {
+        "vertex": "shade.v",
+        "fragment": "shade.f"
+      },
+      "multi_shader": {
+        "vertex": "shade.v",
+        "fragment": {"filename": "assets/shaders/m_shade.frag"}
+      },
+      "lighting-pass": {
+        "vertex": "quad.v",
+        "fragment": {
+          "filename": "assets/shaders/lighting.frag"
+        }
+      }
+    },
+    "attachment": {
+      "color": {
+        "texture" : "color-0-out",
+        "target" : "color",
+        "number" : 0,
+        "clear" : [0, 0, 0, 0]
+      },
+      "normal": {
+        "texture" : "normals-out",
+        "target" : "color",
+        "number" : 1,
+        "clear" : [0.5, 0.5, 0.5, 0]
+      },
+      "light": {
+        "texture" : "light-level",
+        "target" : "color",
+        "number" : 0,
+        "clear" : [0, 0, 0, 0]
+      },
+      "depth": {
+        "texture" : "depth-out",
+        "target" : "depth",
+        "clear" : [1000000.0, 0]
+      }
+    },
+    "layer": {
+      "gbuf": {
+        "attach": ["color", "normal", "depth"]
+      },
+      "light-accum": {
+        "attach": ["light"]
+      }
+    },
+    "render-list": {
+      "scene-1": [
+        {"draw-layer":"gbuf"},
+        {"render": "all-geometry"},
+        {"draw-layer":"light-accum"},
+        {"bind-layer":"gbuf"},
+        {"render": "lighting"},
+        {"copy-layer":"light-accum", "to":null, "type":"color"}
+      ]
+    },
+    "settings":{
+      "active-graph" : "scene-1",
+      "lighting-shader" : "lighting-pass"
+    }
+  },
   "transforms" : {
     "10" : {
       "position" : {
@@ -24,6 +109,42 @@
       "position" : {"x":-3, "y":2, "z":13},
       "rotation" : {"radians":true,"x":0, "y":0, "z":0},
       "scale" : {"x":1, "y":1, "z":1}
+    },
+    "1000" : {
+      "position" : {
+        "x" : 0,
+        "y" : 0,
+        "z" : -1
+      },
+      "rotation" : {
+        "radians" : true,
+        "x" : -1.5707,
+        "y" : 0,
+        "z" : 0
+      },
+      "scale" : {
+        "x" : 0.25,
+        "y" : 0.25,
+        "z" : 0.25
+      }
+    },
+    "1001" : {
+      "position" : {
+        "x" : 1,
+        "y" : 0,
+        "z" : 1
+      },
+      "rotation" : {
+        "radians" : true,
+        "x" : -1.5707,
+        "y" : 0,
+        "z" : 1.5707
+      },
+      "scale" : {
+        "x" : 0.25,
+        "y" : 0.25,
+        "z" : 0.25
+      }
     },
     "1002" : {
       "position" : {
@@ -65,11 +186,25 @@
         "height" : 1.0,
         "disable_deactivation" : true
       },
-      "velocity" : {
+      "velocity": {
+      },
+      "velocity-max" : {
         "max_horizontal" : 10.0,
-        "max_angular" : 5.0
+	"max_angular" : 5.0
       },
       "camera" : {
+      }
+    },
+   "steve" : {
+      "id" : 1001,
+      "renderable" : {
+        "mesh" : "bob",
+        "shader" : "multi_shader",
+        "animation" : "bob_animtion"
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "bob"
       }
     },
     "ship" : {
@@ -82,9 +217,29 @@
         "shape" : "static_mesh",
         "mesh" : "mothership",
         "disable_deactivation" : false
+      },
+      "velocity" :{
       }
     },
-    "hanger" : {
+    "bob" : {
+      "id" : 1000,
+      "renderable" : {
+        "mesh" : "bob",
+        "shader" : "multi_shader",
+        "animation" : "bob_animtion"
+      },
+      "camera" : {
+        "mesh" : "bob"
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "bob"
+      },
+      "reference-frame" : {
+        "entity" : 1002
+      }
+    },
+     "hanger" : {
       "id" : 1003,
       "renderable" : {
         "mesh" : "hanger",
@@ -98,7 +253,7 @@
     },
     "el1" : {
       "id" : 500,
-      "light" : {"enabled" : true, "color":[0.9,0.9,1.0], "radius":20, "shadow" : "depth-s"}
+      "light" : {"enabled" : true, "color":[0.9,0.9,1.0], "radius":20 }
     },
     "el2" : {
       "id" : 501,
