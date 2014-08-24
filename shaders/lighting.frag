@@ -15,18 +15,12 @@ uniform float radius;
 
 uniform int shadow_enabled;
 uniform mat4x4 shadow_matrix;
-uniform sampler2D shadow_depth;
+//uniform sampler2D shadow_depth;
+uniform sampler2DShadow shadow_depth;
 
 in vec2 ex_tex;
 
 out vec4 out_level;
-
-const vec2 blur[4] = vec2[](
-    vec2(-0.94201624,-0.39906216 ),
-    vec2( 0.94558609,-0.76890725 ),
-    vec2(-0.49418411,-0.92938870 ),
-    vec2( 0.34495938, 0.19387760 )
-);
 
 void main(void)
 {
@@ -67,21 +61,26 @@ void main(void)
         discard;
     }
     vec4 shad_pos = vec4(0.0, 0.0, 0.0, 0.0);
-    if(shadow_enabled == 1) {
+    if(shadow_enabled != 0) {
         shad_pos = shadow_matrix * f_world_pos;
-        shad_pos /= shad_pos.w;
-        shad_pos = vec4(shad_pos.xy * 0.5 + 0.5, shad_pos.zw);
+        shad_pos = vec4(vec3(shad_pos.xyz) / shad_pos.w, shad_pos.w);
+        shad_pos = vec4(shad_pos.xyz * 0.5 + 0.5, shad_pos.w);
+        shad_pos.z -= 0.02; // set bias
     }
     float s_depth;
     float s_atten = 1.0;
+#ifdef DEBUG_MODES
+    if(shadow_enabled == 2) {
+        s_depth = texture(shadow_depth, shad_pos.xyz);
+        out_level = vec4(s_depth);
+        return;
+    } else if(shadow_enabled == 3) {
+        out_level = vec4(shad_pos.z);
+        return;
+    } else
+#endif
     if(shadow_enabled == 1) {
-        for(int i = 0; i < 4; i++) {
-            s_depth = texture(shadow_depth, shad_pos.xy + blur[i] / 400.0).z;
-            if(s_depth < shad_pos.z + -0.02) {
-                s_atten -= (1.0 / 4.0);
-                //discard;
-            }
-        }
+        s_atten -= texture(shadow_depth, shad_pos.xyz);
     }
     float l_diffuse = max(norm_dot, 0.0);
 

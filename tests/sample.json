@@ -1,61 +1,8 @@
 {
   "resource_file": "@resources.json",
+  "bob_entities": "@transforms.json",
   "graphics_config": "@graphics.json",
   "bob_entities": "@bob.json",
-  "transforms" : {
-    "10" : {
-      "position" : {
-        "x" : 0,
-        "y" : 1,
-        "z" : 0
-      }
-    },
-    "500":{
-      "position" : {"x":0, "y":2.8, "z":0},
-      "rotation" : {"radians":true,"x":0, "y":0, "z":0},
-      "scale" : {"x":1, "y":1, "z":1}
-    },
-    "501":{
-      "position" : {"x":2, "y":5, "z":12},
-      "rotation" : {"radians":true,"x":0, "y":0, "z":0},
-      "scale" : {"x":1, "y":1, "z":1}
-    },
-    "502":{
-      "position" : {"x":-3, "y":2, "z":13},
-      "rotation" : {"radians":true,"x":0, "y":0, "z":0},
-      "scale" : {"x":1, "y":1, "z":1}
-    },
-    "1002" : {
-      "position" : {
-        "x" : 0,
-        "y" : 0,
-        "z" : 10
-      },
-      "scale" : {
-        "x" : 2,
-        "y" : 2,
-        "z" : 2
-      }
-    },
-    "1003" : {
-      "position" : {
-        "x" : 0,
-        "y" : 0,
-        "z" : 0
-      },
-      "rotation" : {
-        "radians" : true,
-        "x" : 0,
-        "y" : 0,
-        "z" : 0
-      },
-      "scale" : {
-        "x" : 1,
-        "y" : 1,
-        "z" : 1
-      }
-    }
-  },
   "entities" : {
     "camera" : {
       "id" : 10,
@@ -65,7 +12,25 @@
         "height" : 1.0,
         "disable_deactivation" : true
       },
+      "velocity": {
+      },
+      "velocity-max" : {
+        "max_horizontal" : 10.0,
+	"max_angular" : 5.0
+      },
       "camera" : {
+      }
+    },
+   "steve" : {
+      "id" : 1001,
+      "renderable" : {
+        "mesh" : "bob",
+        "shader" : "multi_shader",
+        "animation" : "bob_animtion"
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "bob"
       }
     },
     "ship" : {
@@ -78,6 +43,37 @@
         "shape" : "static_mesh",
         "mesh" : "mothership",
         "disable_deactivation" : false
+      },
+      "velocity" :{
+      }
+    },
+    "bob" : {
+      "id" : 1000,
+      "renderable" : {
+        "mesh" : "bob",
+        "shader" : "multi_shader",
+        "animation" : "bob_animtion"
+      },
+      "camera" : {
+        "mesh" : "bob"
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "bob"
+      },
+      "reference-frame" : {
+        "entity" : 1002
+      }
+    },
+    "vidstand" : {
+      "id" : 1004,
+      "renderable" : {
+        "mesh" : "vidstand",
+        "shader" : "multi_shader"
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "vidstand",
       }
     },
     "hanger" : {
@@ -94,7 +90,7 @@
     },
     "el1" : {
       "id" : 500,
-      "light" : {"enabled" : true, "color":[0.9,0.9,1.0], "radius":20, "shadow" : "depth-s"}
+      "light" : {"enabled" : true, "color":[0.9,0.9,1.0], "radius":20 }
     },
     "el2" : {
       "id" : 501,
