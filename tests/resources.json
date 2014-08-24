@@ -8,6 +8,11 @@
         "filename" : "assets/rooms/hanger/hanger.md5mesh"
       }
     },
+    "OBJ" : {
+      "vidstand" : {
+        "filename" : "assets/vidstand/VidStand_Full.obj"
+      }
+    },
     "Text": {
       "shade.v": {"filename": "assets/shaders/shade.vert"},
       "shade.f": {"filename": "assets/shaders/shade.frag"},
