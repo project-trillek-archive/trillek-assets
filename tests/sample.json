@@ -21,7 +21,7 @@
       "camera" : {
       }
     },
-   "steve" : {
+    "steve" : {
       "id" : 1001,
       "renderable" : {
         "mesh" : "bob",
@@ -73,7 +73,7 @@
       },
       "collidable" : {
         "shape" : "static_mesh",
-        "mesh" : "vidstand",
+        "mesh" : "vidstand"
       }
     },
     "hanger" : {
