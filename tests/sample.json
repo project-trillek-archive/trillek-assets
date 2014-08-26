@@ -12,7 +12,25 @@
         "height" : 1.0,
         "disable_deactivation" : true
       },
+      "velocity": {
+      },
+      "velocity-max" : {
+        "max_horizontal" : 10.0,
+	"max_angular" : 5.0
+      },
       "camera" : {
+      }
+    },
+    "steve" : {
+      "id" : 1001,
+      "renderable" : {
+        "mesh" : "bob",
+        "shader" : "multi_shader",
+        "animation" : "bob_animtion"
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "bob"
       }
     },
     "ship" : {
@@ -25,6 +43,26 @@
         "shape" : "static_mesh",
         "mesh" : "mothership",
         "disable_deactivation" : false
+      },
+      "velocity" :{
+      }
+    },
+    "bob" : {
+      "id" : 1000,
+      "renderable" : {
+        "mesh" : "bob",
+        "shader" : "multi_shader",
+        "animation" : "bob_animtion"
+      },
+      "camera" : {
+        "mesh" : "bob"
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "bob"
+      },
+      "reference-frame" : {
+        "entity" : 1002
       }
     },
     "vidstand" : {
@@ -35,7 +73,7 @@
       },
       "collidable" : {
         "shape" : "static_mesh",
-        "mesh" : "vidstand",
+        "mesh" : "vidstand"
       }
     },
     "hanger" : {
@@ -52,7 +90,7 @@
     },
     "el1" : {
       "id" : 500,
-      "light" : {"enabled" : true, "color":[0.9,0.9,1.0], "radius":20, "shadow" : "depth-s"}
+      "light" : {"enabled" : true, "color":[0.9,0.9,1.0], "radius":20 }
     },
     "el2" : {
       "id" : 501,
