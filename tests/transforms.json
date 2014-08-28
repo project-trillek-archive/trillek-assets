@@ -4,12 +4,12 @@
             "position": {
                 "x": 0,
                 "y": 1,
-                "z": 0
+                "z": 1.5
             },
             "rotation": {
                 "radians": true,
                 "x": 0,
-                "y": 0,
+                "y": -0,
                 "z": 0
             },
             "scale": {
@@ -98,9 +98,9 @@
             },
             "rotation": {
                 "radians": true,
-                "x": -1.57084,
+                "x": 1.57906,
                 "y": 1.5708,
-                "z": 8.60289e-005
+                "z": -3.13333
             },
             "scale": {
                 "x": 0.25,
@@ -153,7 +153,25 @@
             "rotation": {
                 "radians": true,
                 "x": 0,
+                "y": -0,
+                "z": 0
+            },
+            "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            }
+        },
+        "1005": {
+            "position": {
+                "x": -2,
                 "y": 0,
+                "z": 0
+            },
+            "rotation": {
+                "radians": true,
+                "x": 0,
+                "y": -0,
                 "z": 0
             },
             "scale": {

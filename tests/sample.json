@@ -27,17 +27,6 @@
         "disable_deactivation" : false
       }
     },
-    "vidstand" : {
-      "id" : 1004,
-      "renderable" : {
-        "mesh" : "vidstand",
-        "shader" : "multi_shader"
-      },
-      "collidable" : {
-        "shape" : "static_mesh",
-        "mesh" : "vidstand",
-      }
-    },
     "hanger" : {
       "id" : 1003,
       "renderable" : {
@@ -47,6 +36,30 @@
       "collidable" : {
         "shape" : "static_mesh",
         "mesh" : "hanger",
+        "disable_deactivation" : false
+      }
+    },
+    "vidstand" : {
+      "id" : 1004,
+      "renderable" : {
+        "mesh" : "vidstand",
+        "shader" : "multi_shader"
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "vidstand",
+        "disable_deactivation" : false
+      }
+    },
+    "vidstand2" : {
+      "id" : 1005,
+      "renderable" : {
+        "mesh" : "vidstand",
+        "shader" : "multi_shader"
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "vidstand",
         "disable_deactivation" : false
       }
     },
