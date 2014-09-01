@@ -90,7 +90,7 @@
     },
     "el1" : {
       "id" : 500,
-      "light" : {"enabled" : true, "color":[0.9,0.9,1.0], "radius":20 }
+      "light" : {"enabled" : true, "color":[0.9,0.9,1.0], "radius":20, "shadow" : "depth-s" }
     },
     "el2" : {
       "id" : 501,

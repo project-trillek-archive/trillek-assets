@@ -1,6 +1,7 @@
 sys = LuaSys.Get()
 
-sys:LoadScriptFile("assets/scripts/sixdofcamera.lua")
+sys:LoadScriptFile("assets/scripts/fpcamera.lua")
 
-function Update(delta)
-end
+gui = GUI.Get()
+gui:LoadFont("assets/mona.ttf")
+gui:LoadDoc("test.rml")
