@@ -21,18 +21,6 @@
       "camera" : {
       }
     },
-    "steve" : {
-      "id" : 1001,
-      "renderable" : {
-        "mesh" : "bob",
-        "shader" : "multi_shader",
-        "animation" : "bob_animtion"
-      },
-      "collidable" : {
-        "shape" : "static_mesh",
-        "mesh" : "bob"
-      }
-    },
     "ship" : {
       "id" : 1002,
       "renderable" : {
@@ -49,16 +37,7 @@
     },
     "bob" : {
       "id" : 1000,
-      "renderable" : {
-        "mesh" : "bob",
-        "shader" : "multi_shader",
-        "animation" : "bob_animtion"
-      },
       "camera" : {
-        "mesh" : "bob"
-      },
-      "collidable" : {
-        "shape" : "static_mesh",
         "mesh" : "bob"
       },
       "reference-frame" : {
