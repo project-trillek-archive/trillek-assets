@@ -1,0 +1,47 @@
+<rml>
+<head><title>Main Menu</title>
+<style>
+body,body:hover {
+width: 100%;
+font-family: Mona;
+font-size: 16pt;
+font-charset: U+0020-007E,U+3000-30FE,U+7D9A,U+7D42,U+4E86;
+position: relative;
+}
+button {
+	color: #FFFF00;
+	background-color: #333333;
+	border-width: 2px;
+	border-color: #44BB99;
+	width: 20%;
+	margin-left: 40%;
+	margin-right: 40%;
+	margin-top: 2px;
+	display: block;
+}
+button:hover {
+	background-color: #777777;
+	color: #4444FF;
+}
+button:hover:active {
+	color: #6666FF;
+}
+.menu {
+position: absolute;
+top:100px;
+display:block;
+text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="menu">
+<p><img src="../tests/T1.png" /></p>
+<p><button id="dirt">Reset</button></p>
+<p><button id="refresh" onclick="lua:Menu_Reload()">Reload UI</button></p>
+<p><button id="resume" onclick="lua:Menu_Resume()">Continue</button></p>
+<p><button id="exit" onclick="lua:OS.Get():Terminate()">Exit</button></p>
+<span>[Esc] to toggle menu</span>
+</div>
+</body>
+</rml>
