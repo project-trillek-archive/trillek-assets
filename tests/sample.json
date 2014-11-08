@@ -42,6 +42,9 @@
       },
       "reference-frame" : {
         "entity" : 1002
+      },
+      "health": {
+        "health" : 100
       }
     },
     "hanger" : {
