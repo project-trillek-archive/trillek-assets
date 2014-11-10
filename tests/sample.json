@@ -32,6 +32,9 @@
         "mesh" : "mothership",
         "disable_deactivation" : false
       },
+      "oxygen-rate" : {
+      	"rate" : 20.0
+      },
       "velocity" :{
       }
     },
