@@ -21,18 +21,6 @@
       "camera" : {
       }
     },
-    "steve" : {
-      "id" : 1001,
-      "renderable" : {
-        "mesh" : "bob",
-        "shader" : "multi_shader",
-        "animation" : "bob_animtion"
-      },
-      "collidable" : {
-        "shape" : "static_mesh",
-        "mesh" : "bob"
-      }
-    },
     "ship" : {
       "id" : 1002,
       "renderable" : {
@@ -49,31 +37,11 @@
     },
     "bob" : {
       "id" : 1000,
-      "renderable" : {
-        "mesh" : "bob",
-        "shader" : "multi_shader",
-        "animation" : "bob_animtion"
-      },
       "camera" : {
-        "mesh" : "bob"
-      },
-      "collidable" : {
-        "shape" : "static_mesh",
         "mesh" : "bob"
       },
       "reference-frame" : {
         "entity" : 1002
-      }
-    },
-    "vidstand" : {
-      "id" : 1004,
-      "renderable" : {
-        "mesh" : "vidstand",
-        "shader" : "multi_shader"
-      },
-      "collidable" : {
-        "shape" : "static_mesh",
-        "mesh" : "vidstand"
       }
     },
     "hanger" : {
@@ -85,6 +53,30 @@
       "collidable" : {
         "shape" : "static_mesh",
         "mesh" : "hanger",
+        "disable_deactivation" : false
+      }
+    },
+    "vidstand" : {
+      "id" : 1004,
+      "renderable" : {
+        "mesh" : "vidstand",
+        "shader" : "multi_shader"
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "vidstand",
+        "disable_deactivation" : false
+      }
+    },
+    "vidstand2" : {
+      "id" : 1005,
+      "renderable" : {
+        "mesh" : "vidstand",
+        "shader" : "multi_shader"
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "vidstand",
         "disable_deactivation" : false
       }
     },
