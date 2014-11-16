@@ -112,13 +112,13 @@
   },
   "sounds" : [{
       "id" : "music_track_1",
-      "src" : "assets/audio/music/stage7 - 8 bit mentality.ogg",
+      "src" : "common/assets/audio/music/stage7 - 8 bit mentality.ogg",
       "loop" : false,
       "volume" : 0.5,
       "spatial" : false
     }, {
       "id" : "music_track_2",
-      "src" : "assets/audio/music/stage7 - 8 bit mentality.ogg",
+      "src" : "common/assets/audio/music/stage7 - 8 bit mentality.ogg",
       "loop" : true,
       "volume" : 1.0,
       "spatial" : false

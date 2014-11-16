@@ -7,20 +7,20 @@
       },
       "multi_shader": {
         "vertex": "shade.v",
-        "fragment": {"filename": "assets/shaders/m_shade.frag"}
+        "fragment": {"filename": "common/assets/shaders/m_shade.frag"}
       },
       "lighting-pass": {
         "define": {"DEBUG_MODES": null},
         "vertex": "quad.v",
-        "fragment": {"filename": "assets/shaders/lighting.frag"}
+        "fragment": {"filename": "common/assets/shaders/lighting.frag"}
       },
       "shadow-test": {
-        "vertex": {"filename": "assets/shaders/proto_shadow.vert"},
+        "vertex": {"filename": "common/assets/shaders/proto_shadow.vert"},
         "colorbinding": {"out_depth": 0}
       },
       "post-pass": {
         "vertex": "quad.v",
-        "fragment": {"filename": "assets/shaders/post.frag"},
+        "fragment": {"filename": "common/assets/shaders/post.frag"},
         "colorbinding": {"out_level": 0}
       }
     },
