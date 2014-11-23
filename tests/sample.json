@@ -32,6 +32,9 @@
         "mesh" : "mothership",
         "disable_deactivation" : false
       },
+      "oxygen-rate" : {
+      	"rate" : 0.21
+      },
       "velocity" :{
       }
     },
@@ -42,6 +45,20 @@
       },
       "reference-frame" : {
         "entity" : 1002
+      },
+      "health": {
+        "health" : 100
+      },
+      "oxygen-consumer" : {
+        "breath" : 4.67E-15,
+	"tank" : 1006
+      }
+    },
+    "oxygen_bottle" : {
+      "id": 1006,
+      "oxygen-rate" : {
+        "volume": 0.5,
+	"rate": 0.21
       }
     },
     "hanger" : {
@@ -95,13 +112,13 @@
   },
   "sounds" : [{
       "id" : "music_track_1",
-      "src" : "assets/audio/music/stage7 - 8 bit mentality.ogg",
+      "src" : "common/assets/audio/music/stage7 - 8 bit mentality.ogg",
       "loop" : false,
       "volume" : 0.5,
       "spatial" : false
     }, {
       "id" : "music_track_2",
-      "src" : "assets/audio/music/stage7 - 8 bit mentality.ogg",
+      "src" : "common/assets/audio/music/stage7 - 8 bit mentality.ogg",
       "loop" : true,
       "volume" : 1.0,
       "spatial" : false
