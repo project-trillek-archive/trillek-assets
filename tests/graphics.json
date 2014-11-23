@@ -24,8 +24,8 @@
         "colorbinding": {"out_level": 0}
       },
       "gui-pass": {
-        "vertex": {"filename": "assets/shaders/gui.vert"},
-        "fragment": {"filename": "assets/shaders/gui.frag"},
+        "vertex": {"filename": "common/assets/shaders/gui.vert"},
+        "fragment": {"filename": "common/assets/shaders/gui.frag"},
         "attrbinding": {"in_pos": 0, "in_color": 1},
         "colorbinding": {"out_color": 0}
       }

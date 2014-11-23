@@ -1,5 +1,5 @@
 sys = LuaSys.Get()
 
-sys:LoadScriptFile("assets/scripts/fpcamera.lua")
-sys:LoadScriptFile("assets/scripts/menu.lua")
+sys:LoadScriptFile("common/assets/scripts/fpcamera.lua")
+sys:LoadScriptFile("common/assets/scripts/menu.lua")
 

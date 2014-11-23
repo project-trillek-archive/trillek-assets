@@ -1,7 +1,7 @@
 
 gui = GUI.Get()
-gui:LoadFont("assets/mona.ttf")
-GUI.cdoc = gui:LoadDoc("assets/scripts/menu.rml")
+gui:LoadFont("common/assets/mona.ttf")
+GUI.cdoc = gui:LoadDoc("common/assets/scripts/menu.rml")
 gui:ShowDoc(GUI.cdoc)
 
 LuaSys.Get():Subscribe(5000, "ToggleUI")
@@ -11,7 +11,7 @@ end
 
 function Menu_Reload()
 	gui:CloseDoc(GUI.cdoc)
-	GUI.cdoc = gui:LoadDoc('assets/scripts/menu.rml')
+	GUI.cdoc = gui:LoadDoc('common/assets/scripts/menu.rml')
 	gui:ShowDoc(GUI.cdoc)
 end
 
@@ -39,3 +39,4 @@ function ToggleUI(action, key)
 		end
 	end
 end
+

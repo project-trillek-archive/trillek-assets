@@ -83,7 +83,8 @@ end
 function MouseUpdate(delta)
 	camera = Transform.Get(10)
 	cam = camera:get_rotation()
-	cameraAn = {rx = -cameraR.y, ry = -cameraR.x, rz = 0}
+	cameraAn = {x = cameraVelocity.x, y = cameraVelocity.y, z = cameraVelocity.z,
+		rx = -cameraR.y, ry = -cameraR.x, rz = 0}
 	cameraR.x = 0
 	cameraR.y = 0
 	phys:set_velocity(10, cameraAn)
