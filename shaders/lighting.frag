@@ -65,7 +65,7 @@ void main(void)
         shad_pos = shadow_matrix * f_world_pos;
         shad_pos = vec4(vec3(shad_pos.xyz) / shad_pos.w, shad_pos.w);
         shad_pos = vec4(shad_pos.xyz * 0.5 + 0.5, shad_pos.w);
-        shad_pos.z -= 0.02; // set bias
+        shad_pos.z -= 0.001; // set bias
     }
     float s_depth;
     float s_atten = 1.0;

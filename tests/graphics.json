@@ -9,6 +9,10 @@
         "vertex": "shade.v",
         "fragment": {"filename": "common/assets/shaders/m_shade.frag"}
       },
+      "multi_notex": {
+        "vertex": "shade.v",
+        "fragment": {"filename": "common/assets/shaders/m_ssolid.frag"}
+      },
       "lighting-pass": {
         "define": {"DEBUG_MODES": null},
         "vertex": "quad.v",

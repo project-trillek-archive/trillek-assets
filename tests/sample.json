@@ -77,7 +77,7 @@
       "id" : 1004,
       "renderable" : {
         "mesh" : "vidstand",
-        "shader" : "multi_shader"
+        "shader" : "multi_notex"
       },
       "collidable" : {
         "shape" : "static_mesh",
@@ -89,7 +89,7 @@
       "id" : 1005,
       "renderable" : {
         "mesh" : "vidstand",
-        "shader" : "multi_shader"
+        "shader" : "multi_notex"
       },
       "collidable" : {
         "shape" : "static_mesh",
