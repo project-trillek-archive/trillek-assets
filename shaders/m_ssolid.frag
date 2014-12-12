@@ -10,18 +10,23 @@ in vec2 ex_depth;
 out vec4 out_col;
 out vec4 out_norm;
 
+uniform int textured;
 uniform sampler2D texUnit;
 
 void main(void)
 {
     vec4 tci;
+    float spec;
 
     tci = texture(texUnit, ex_tex1);
-    if(tci == vec4(0)) {
+    if(textured == 0) {
         tci = vec4(0.6, 0.6, 0.6, 1.0);
+        spec = 0.5;
+    } else {
+        spec = 0.1;
     }
 
     out_col = tci;
-    out_norm = vec4(ex_nvect * 0.5 + 0.5, (tci.x+tci.y+tci.z) * 0.333);
+    out_norm = vec4(ex_nvect * 0.5 + 0.5, spec);
     gl_FragDepth = ex_depth.x / ex_depth.y;
 }
