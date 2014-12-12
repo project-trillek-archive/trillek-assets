@@ -1,21 +1,16 @@
 
-theos = OS.Get()
+sys:Subscribe(1, "MouseUpdate")
+sys:Subscribe(5000, "MoveCamera")
+sys:Subscribe(5001, "MouseBFPS")
+sys:Subscribe(5002, "MouseMFPS")
 
-LuaSys.Get():Subscribe(1, "MouseUpdate")
-LuaSys.Get():Subscribe(5000, "MoveCamera")
-LuaSys.Get():Subscribe(5001, "MouseBFPS")
-LuaSys.Get():Subscribe(5002, "MouseMFPS")
-phys = Physics.Get()
 cameraVelocity = {x = 0.0, y = 0.0, z = 0.0, rx = 0.0, ry = 0.0, rz = 0.0}
 cameraR = {x = 0.0, y = 0.0, z = 0.0}
 gravityEnabled = true
-editit = false
+
 function MouseBFPS(state, btn)
 	if (state == "Down") and (btn == "Right") then
 		theos:ToggleMouseLock()
-	elseif (state == "Down") and (btn == "Left") then
-		editit = not editit
-		phys:set_movable(1004, editit)
 	end
 end
 

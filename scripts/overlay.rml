@@ -1,0 +1,25 @@
+<rml>
+<head>
+<style>
+body,body:hover {
+width: 100%;
+font-family: Mona;
+font-size: 14pt;
+font-charset: U+0020-007E;
+position: relative;
+}
+.tooltip {
+position: absolute;
+top:200px;
+display:block;
+text-align: center;
+color: #00EE44;
+}
+</style>
+</head>
+<body>
+<div class="tooltip">
+<span id="tool">Grab</span>
+</div>
+</body>
+</rml>

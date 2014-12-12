@@ -10,13 +10,14 @@
         "shape" : "capsule",
         "radius" : 0.3,
         "height" : 1.0,
-        "disable_deactivation" : true
+        "disable_deactivation" : true,
+        "rotation" : false
       },
       "velocity": {
       },
       "velocity-max" : {
         "max_horizontal" : 10.0,
-	"max_angular" : 5.0
+        "max_angular" : 5.0
       },
       "camera" : {
       }
@@ -43,22 +44,19 @@
       "camera" : {
         "mesh" : "bob"
       },
-      "reference-frame" : {
-        "entity" : 1002
-      },
       "health": {
         "health" : 100
       },
       "oxygen-consumer" : {
         "breath" : 4.67E-15,
-	"tank" : 1006
+        "tank" : 1006
       }
     },
     "oxygen_bottle" : {
       "id": 1006,
       "oxygen-rate" : {
         "volume": 0.5,
-	"rate": 0.21
+        "rate": 0.21
       }
     },
     "hanger" : {
@@ -79,6 +77,9 @@
         "mesh" : "vidstand",
         "shader" : "multi_notex"
       },
+      "movable" : {
+        "movable" : true
+      },
       "collidable" : {
         "shape" : "static_mesh",
         "mesh" : "vidstand",
@@ -90,6 +91,9 @@
       "renderable" : {
         "mesh" : "vidstand",
         "shader" : "multi_notex"
+      },
+      "movable" : {
+        "movable" : true
       },
       "collidable" : {
         "shape" : "static_mesh",

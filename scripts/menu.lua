@@ -1,10 +1,8 @@
 
-gui = GUI.Get()
-gui:LoadFont("common/assets/mona.ttf")
 GUI.cdoc = gui:LoadDoc("common/assets/scripts/menu.rml")
 gui:ShowDoc(GUI.cdoc)
 
-LuaSys.Get():Subscribe(5000, "ToggleUI")
+sys:Subscribe(5000, "ToggleUI")
 
 function Menu_Reset()
 end
@@ -17,8 +15,9 @@ end
 
 function Menu_Resume()
 	gui:HideDoc(GUI.cdoc)
-	if not OS.Get():GetMouseLock() then
-		OS.Get():ToggleMouseLock()
+	rayallowed = true
+	if not theos:GetMouseLock() then
+		theos:ToggleMouseLock()
 	end
 end
 
@@ -26,13 +25,15 @@ function ToggleUI(action, key)
 	if (action == "Up") then
 		if (key == 256) then
 			if (gui:DocVisible(GUI.cdoc)) then
+				OverlayEnable()
 				gui:HideDoc(GUI.cdoc)
-				if not OS.Get():GetMouseLock() then
-					OS.Get():ToggleMouseLock()
+				if not theos:GetMouseLock() then
+					theos:ToggleMouseLock()
 				end
 			else
-				if OS.Get():GetMouseLock() then
-					OS.Get():ToggleMouseLock()
+				OverlayDisable()
+				if theos:GetMouseLock() then
+					theos:ToggleMouseLock()
 				end
 				gui:ShowDoc(GUI.cdoc)
 			end
