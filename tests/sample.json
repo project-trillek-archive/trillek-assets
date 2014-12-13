@@ -90,7 +90,8 @@
       "id" : 1005,
       "renderable" : {
         "mesh" : "vidstand",
-        "shader" : "multi_notex"
+        "shader" : "multi_notex",
+        "instanced_textures" : [true]
       },
       "movable" : {
         "movable" : true
