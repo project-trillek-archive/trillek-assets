@@ -7,6 +7,18 @@ sys:Subscribe(5002, "MouseMFPS")
 cameraVelocity = {x = 0.0, y = 0.0, z = 0.0, rx = 0.0, ry = 0.0, rz = 0.0}
 cameraR = {x = 0.0, y = 0.0, z = 0.0}
 gravityEnabled = true
+enableKeyMove = true
+
+function KeybMoveDisable()
+	enableKeyMove = false
+	cameraVelocity.x = 0
+	cameraVelocity.y = 0
+	cameraVelocity.z = 0
+end
+
+function KeybMoveEnable()
+	enableKeyMove = true
+end
 
 function MouseBFPS(state, btn)
 	if (state == "Down") and (btn == "Right") then
@@ -15,14 +27,17 @@ function MouseBFPS(state, btn)
 end
 
 function MoveCamera(action, key)
+    if not enableKeyMove then
+        return
+    end
     if (action == "Down") then
         if (key == 87) then
             cameraVelocity.z = -0.1
-        elseif (key == string.byte("S")) then
+        elseif key == 83 then
             cameraVelocity.z = 0.1
-        elseif (key == 65) then
+        elseif key == 65 then
             cameraVelocity.x = -0.1
-        elseif (key == string.byte("D")) then
+        elseif key == 68 then
             cameraVelocity.x = 0.1
         elseif (key == 328) then
             cameraVelocity.rx = 5.0

@@ -8,40 +8,73 @@ interacting = false
 GUI.ovlay = gui:LoadDoc("common/assets/scripts/overlay.rml")
 
 sys:Subscribe(1, "RayUpdate")
+sys:Subscribe(5000, "InteractCtl")
 sys:Subscribe(5001, "RayBtn")
 
 function OverlayShow(which)
-	Log("OVL Showing " .. which)
 	gui:ShowDoc(GUI.ovlay)
 	ovisdisplay = true
 end
 
 function OverlayHide()
-	Log("OVL Hiding")
 	gui:HideDoc(GUI.ovlay)
 	ovisdisplay = false
+	InteractDisable()
+end
+
+function InteractEnable(thing)
+	Log("Interact On " .. thing)
+	KeybMoveDisable()
+	interacting = true
+	if ovisdisplay then
+		gui:HideDoc(GUI.ovlay)
+	end
+end
+
+function InteractDisable()
+	KeybMoveEnable()
+	if interacting then
+		Log("Interact Off")
+		interacting = false
+		if ovisdisplay then
+			gui:ShowDoc(GUI.ovlay)
+		end
+	end
 end
 
 function OverlayDisable()
 	rayallowed = false
 	OverlayHide()
+	InteractDisable()
 end
 
 function OverlayEnable()
 	rayallowed = true
 end
 
+function InteractCtl(action, key)
+	if not interacting and action == "Down" then
+		if key == 69 then
+			InteractEnable(movn)
+		end
+	end
+end
+
 function RayBtn(state, btn)
-	if rayallowed and (state == "Down") and (btn == "Left") then
-		if movit then
-			phys:set_moving(movn, false)
-			movit = false
-		else
-			movn = phys:ray_cast()
-			editit = phys:get_movable(movn)
-			if editit then
-				phys:set_moving(movn, true)
-				movit = true
+	if (state == "Down") and (btn == "Left") then
+		if interacting then
+			InteractDisable()
+		elseif rayallowed then
+			if movit then
+				phys:set_moving(movn, false)
+				movit = false
+			else
+				movn = phys:ray_cast()
+				editit = phys:get_movable(movn)
+				if editit then
+					phys:set_moving(movn, true)
+					movit = true
+				end
 			end
 		end
 	end
@@ -61,12 +94,10 @@ function RayUpdate()
 			editit = phys:get_movable(movn)
 			if editit and howfar < 1.2 then
 				if not ovisdisplay then
-					Log("dist=" .. howfar .. ",ent=" .. movn)
 					OverlayShow("interact")
 				end
 			else
 				if ovisdisplay then
-					Log("dist=" .. howfar .. ",ent=" .. movn)
 					OverlayHide()
 				end
 			end
