@@ -86,12 +86,25 @@
         "disable_deactivation" : false
       }
     },
+    "compute-1" : {
+      "id" : 9000,
+      "trillek-computer" : {
+        "rom" : "meisys.ffi",
+        "cpu" : "TR3200"
+      }
+    },
     "vidstand2" : {
       "id" : 1005,
       "renderable" : {
         "mesh" : "vidstand",
         "shader" : "multi_notex",
         "instanced_textures" : [true]
+      },
+      "display" : {
+        "instance_id" : 0,
+        "link_id" : 9000,
+        "slot" : 5,
+        "model" : "TDA"
       },
       "movable" : {
         "movable" : true
