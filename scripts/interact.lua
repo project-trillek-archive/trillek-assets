@@ -4,8 +4,9 @@ movn = 0
 rayallowed = false
 ovisdisplay = false
 interacting = false
-ovdoc = nil;
-ovinter = nil;
+ovdoc = nil
+ovinter = nil
+irlim = 0
 
 GUI.ovlay = gui:sync_load_doc("common/assets/scripts/overlay.rml")
 
@@ -23,11 +24,13 @@ function OverlayShow(which)
 	if Entity.is_interactive(which) then
 		acts = Entity.get_actions(which)
 		atext = ""
-		for i = 1, #acts do
+		irlim = #acts
+		for i = 1, irlim do
 			atext = atext .. "<div>[" .. i .. "] " .. acts[i].text .. "</div>"
 		end
 		ovinter:setInnerRML(atext)
 	else
+		irlim = 0
 		ovinter:setInnerRML("")
 	end
 	gui:show_doc(GUI.ovlay)
@@ -35,13 +38,27 @@ function OverlayShow(which)
 end
 
 function OverlayHide()
+	irlim = 0
 	gui:hide_doc(GUI.ovlay)
 	ovisdisplay = false
 	InteractDisable()
 end
 
+function InteractTrigger(thing, snum)
+	if irlim > 0 then
+		if snum <= irlim then
+			Log("Trigger Interact " .. snum .. " On " .. thing)
+			Entity.trigger(thing, snum)
+		else
+			Log("Can not Trigger " .. snum .. " On " .. thing)
+		end
+	else
+		Log("Can not Interact with " .. thing)
+	end
+end
+
 function InteractEnable(thing)
-	Log("Interact On " .. thing)
+	Log("Interact Lock On " .. thing)
 	KeybMoveDisable()
 	interacting = true
 	if ovisdisplay then
@@ -52,7 +69,7 @@ end
 function InteractDisable()
 	KeybMoveEnable()
 	if interacting then
-		Log("Interact Off")
+		Log("Interact Lock Off")
 		interacting = false
 		if ovisdisplay then
 			gui:show_doc(GUI.ovlay)
@@ -73,7 +90,11 @@ end
 function InteractCtl(action, key)
 	if not interacting and action == "Down" then
 		if key == 69 then
-			InteractEnable(movn)
+			InteractTrigger(movn, 1)
+		elseif key == 50 then
+			InteractTrigger(movn, 2)
+		elseif key == 51 then
+			InteractTrigger(movn, 3)
 		end
 	end
 end
