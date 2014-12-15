@@ -4,20 +4,29 @@ movn = 0
 rayallowed = false
 ovisdisplay = false
 interacting = false
+ovdoc = nil;
+ovinter = nil;
 
-GUI.ovlay = gui:LoadDoc("common/assets/scripts/overlay.rml")
+GUI.ovlay = gui:sync_load_doc("common/assets/scripts/overlay.rml")
 
 sys:Subscribe(1, "RayUpdate")
 sys:Subscribe(5000, "InteractCtl")
 sys:Subscribe(5001, "RayBtn")
 
+ovdoc = gui:get_doc(GUI.ovlay)
+if not (ovdoc == nil) then
+	ovinter = ovdoc:getElementById("inter")
+end
+
+
 function OverlayShow(which)
-	gui:ShowDoc(GUI.ovlay)
+	ovinter:setInnerRML("[E] Interact with " .. which)
+	gui:show_doc(GUI.ovlay)
 	ovisdisplay = true
 end
 
 function OverlayHide()
-	gui:HideDoc(GUI.ovlay)
+	gui:hide_doc(GUI.ovlay)
 	ovisdisplay = false
 	InteractDisable()
 end
@@ -27,7 +36,7 @@ function InteractEnable(thing)
 	KeybMoveDisable()
 	interacting = true
 	if ovisdisplay then
-		gui:HideDoc(GUI.ovlay)
+		gui:hide_doc(GUI.ovlay)
 	end
 end
 
@@ -37,7 +46,7 @@ function InteractDisable()
 		Log("Interact Off")
 		interacting = false
 		if ovisdisplay then
-			gui:ShowDoc(GUI.ovlay)
+			gui:show_doc(GUI.ovlay)
 		end
 	end
 end
@@ -94,7 +103,7 @@ function RayUpdate()
 			editit = phys:get_movable(movn)
 			if editit and howfar < 1.2 then
 				if not ovisdisplay then
-					OverlayShow("interact")
+					OverlayShow(movn)
 				end
 			else
 				if ovisdisplay then

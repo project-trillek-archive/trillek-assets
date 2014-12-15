@@ -40,7 +40,7 @@ text-align: center;
 <p><button id="dirt">Reset</button></p>
 <p><button id="refresh" onclick="lua:Menu_Reload()">Reload UI</button></p>
 <p><button id="resume" onclick="lua:Menu_Resume()">Continue</button></p>
-<p><button id="exit" onclick="lua:OS.Get():Terminate()">Exit</button></p>
+<p><button id="exit" onclick="lua:theos:Terminate()">Exit</button></p>
 <span>[Esc] to toggle menu</span>
 </div>
 </body>

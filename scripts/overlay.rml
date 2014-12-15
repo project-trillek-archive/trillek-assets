@@ -25,7 +25,7 @@ color: #AEDDDD;
 }
 </style>
 </head>
-<body>
+<body onload="lua:OverlayInit()">
 <div class="tooltip">
 <div id="tool">[LMB] Grab</div>
 </div>
