@@ -20,7 +20,16 @@ end
 
 
 function OverlayShow(which)
-	ovinter:setInnerRML("[E] Interact with " .. which)
+	if Entity.is_interactive(which) then
+		acts = Entity.get_actions(which)
+		atext = ""
+		for i = 1, #acts do
+			atext = atext .. "<div>[" .. i .. "] " .. acts[i].text .. "</div>"
+		end
+		ovinter:setInnerRML(atext)
+	else
+		ovinter:setInnerRML("")
+	end
 	gui:show_doc(GUI.ovlay)
 	ovisdisplay = true
 end

@@ -3,23 +3,22 @@
 <style>
 body,body:hover {
 width: 100%;
-height: 100%;
+top: 48%;
 font-family: Mona;
 font-size: 14pt;
 font-charset: U+0020-007E;
 position: relative;
 }
-.tooltip {
-position: absolute;
-top:48%;
+div {
 display:block;
+}
+.tooltip {
+position: relative;
 text-align: center;
 color: #00EEA4;
 }
 .infotip {
-position: absolute;
-top:51%;
-display:block;
+position: relative;
 text-align: center;
 color: #AEDDDD;
 }
@@ -29,8 +28,7 @@ color: #AEDDDD;
 <div class="tooltip">
 <div id="tool">[LMB] Grab</div>
 </div>
-<div class="infotip">
-<div id="inter">[E] Interact</div>
+<div class="infotip" id="inter">
 </div>
 </body>
 </rml>

@@ -75,7 +75,14 @@
       "id" : 1004,
       "renderable" : {
         "mesh" : "vidstand",
-        "shader" : "multi_notex"
+        "shader" : "multi_notex",
+        "instanced_textures" : [true]
+      },
+      "display" : {
+        "instance_id" : 0,
+        "link_id" : 9000,
+        "slot" : 4,
+        "model" : "TDA"
       },
       "movable" : {
         "movable" : true
@@ -100,14 +107,18 @@
         "shader" : "multi_notex",
         "instanced_textures" : [true]
       },
+      "movable" : {
+        "movable" : true
+      },
       "display" : {
         "instance_id" : 0,
-        "link_id" : 9000,
+        "link_id" : 1005,
         "slot" : 5,
         "model" : "TDA"
       },
-      "movable" : {
-        "movable" : true
+      "trillek-computer" : {
+        "rom" : "meisys.ffi",
+        "cpu" : "TR3200"
       },
       "collidable" : {
         "shape" : "static_mesh",
