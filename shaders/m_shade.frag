@@ -21,7 +21,7 @@ void main(void)
         discard;
     }
 
-    out_col = tci;
+    out_col = vec4(tci.xyz, 0.0);
     out_norm = vec4(ex_nvect * 0.5 + 0.5, (tci.x+tci.y+tci.z) * 0.333);
     gl_FragDepth = ex_depth.x / ex_depth.y;
 }

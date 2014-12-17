@@ -20,7 +20,7 @@ void main(void)
 
     tci = texture(texUnit, ex_tex1);
     if(textured == 0) {
-        tci = vec4(0.6, 0.6, 0.6, 1.0);
+        tci = vec4(0.6, 0.6, 0.6, 0.0);
         spec = 0.5;
     } else {
         spec = 0.1;
