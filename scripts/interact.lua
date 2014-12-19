@@ -91,10 +91,14 @@ function InteractCtl(action, key)
 	if not interacting and action == "Down" then
 		if key == 69 then
 			InteractTrigger(movn, 1)
+		elseif key == 49 then
+			InteractTrigger(movn, 1)
 		elseif key == 50 then
 			InteractTrigger(movn, 2)
 		elseif key == 51 then
 			InteractTrigger(movn, 3)
+		elseif key == 52 then
+			InteractTrigger(movn, 4)
 		end
 	end
 end
@@ -128,11 +132,15 @@ function RayUpdate()
 				phys:ray_invalidate()
 			end
 		else
-			movn = phys:ray_cast()
+			scnid = phys:ray_cast()
 			howfar = phys:ray_dist()
-			editit = phys:get_movable(movn)
+			editit = phys:get_movable(scnid)
 			if editit and howfar < 1.2 then
 				if not ovisdisplay then
+					movn = scnid
+					OverlayShow(movn)
+				elseif not (scnid == movn) then
+					movn = scnid
 					OverlayShow(movn)
 				end
 			else
