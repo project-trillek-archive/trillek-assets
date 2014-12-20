@@ -6,6 +6,9 @@ ovisdisplay = false
 interacting = false
 ovdoc = nil
 ovinter = nil
+ovtool = nil
+usingid = 0
+usingtrig = 0
 irlim = 0
 
 GUI.ovlay = gui:sync_load_doc("common/assets/scripts/overlay.rml")
@@ -17,20 +20,31 @@ sys:Subscribe(5001, "RayBtn")
 ovdoc = gui:get_doc(GUI.ovlay)
 if not (ovdoc == nil) then
 	ovinter = ovdoc:getElementById("inter")
+	ovtool = ovdoc:getElementById("tool")
 end
 
 
 function OverlayShow(which)
+	if interacting then
+		InteractDisable()
+	end
 	if Entity.is_interactive(which) then
 		acts = Entity.get_actions(which)
 		atext = ""
 		irlim = #acts
 		for i = 1, irlim do
-			atext = atext .. "<div>[" .. i .. "] " .. acts[i].text .. "</div>"
+			if i == 1 then
+				ovtool:setInnerRML("[LMB] " .. acts[i].text)
+			elseif i == 2 then
+				atext = atext .. "<div>[E] " .. acts[i].text .. "</div>"
+			else
+				atext = atext .. "<div>[" .. i .. "] " .. acts[i].text .. "</div>"
+			end
 		end
 		ovinter:setInnerRML(atext)
 	else
 		irlim = 0
+		ovtool:setInnerRML("")
 		ovinter:setInnerRML("")
 	end
 	gui:show_doc(GUI.ovlay)
@@ -47,7 +61,11 @@ end
 function InteractTrigger(thing, snum)
 	if irlim > 0 then
 		if snum <= irlim then
-			Log("Trigger Interact " .. snum .. " On " .. thing)
+			acts = Entity.get_actions(thing)
+			Log("Trigger Interact " .. acts[snum].text .. " On " .. thing)
+			if acts[snum].text == "use" then
+				InteractEnable(thing, snum)
+			end
 			Entity.trigger(thing, snum)
 		else
 			Log("Can not Trigger " .. snum .. " On " .. thing)
@@ -57,10 +75,12 @@ function InteractTrigger(thing, snum)
 	end
 end
 
-function InteractEnable(thing)
+function InteractEnable(thing, snum)
 	Log("Interact Lock On " .. thing)
 	KeybMoveDisable()
 	interacting = true
+	usingid = thing
+	usingtrig = snum
 	if ovisdisplay then
 		gui:hide_doc(GUI.ovlay)
 	end
@@ -71,6 +91,7 @@ function InteractDisable()
 	if interacting then
 		Log("Interact Lock Off")
 		interacting = false
+		Entity.trigger(usingid, usingtrig)
 		if ovisdisplay then
 			gui:show_doc(GUI.ovlay)
 		end
@@ -90,10 +111,6 @@ end
 function InteractCtl(action, key)
 	if not interacting and action == "Down" then
 		if key == 69 then
-			InteractTrigger(movn, 1)
-		elseif key == 49 then
-			InteractTrigger(movn, 1)
-		elseif key == 50 then
 			InteractTrigger(movn, 2)
 		elseif key == 51 then
 			InteractTrigger(movn, 3)
@@ -103,22 +120,26 @@ function InteractCtl(action, key)
 	end
 end
 
+function InteractMove()
+	if movit then
+		phys:set_moving(movn, false)
+		movit = false
+	else
+		movn = phys:ray_cast()
+		editit = phys:get_movable(movn)
+		if editit then
+			phys:set_moving(movn, true)
+			movit = true
+		end
+	end
+end
+
 function RayBtn(state, btn)
 	if (state == "Down") and (btn == "Left") then
 		if interacting then
 			InteractDisable()
 		elseif rayallowed then
-			if movit then
-				phys:set_moving(movn, false)
-				movit = false
-			else
-				movn = phys:ray_cast()
-				editit = phys:get_movable(movn)
-				if editit then
-					phys:set_moving(movn, true)
-					movit = true
-				end
-			end
+			InteractTrigger(movn, 1)
 		end
 	end
 end

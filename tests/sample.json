@@ -80,12 +80,16 @@
       },
       "display" : {
         "instance_id" : 0,
-        "link_id" : 9000,
+        "link_id" : 1004,
         "slot" : 4,
         "model" : "TDA"
       },
       "movable" : {
         "movable" : true
+      },
+      "trillek-computer" : {
+        "rom" : "meisys.ffi",
+        "cpu" : "TR3200"
       },
       "collidable" : {
         "shape" : "static_mesh",
@@ -107,8 +111,9 @@
         "shader" : "multi_notex",
         "instanced_textures" : [true]
       },
-      "movable" : {
-        "movable" : true
+      "keyboard" : {
+        "link_id" : 1005,
+        "slot" : 2
       },
       "display" : {
         "instance_id" : 0,
@@ -118,7 +123,33 @@
       },
       "trillek-computer" : {
         "rom" : "meisys.ffi",
-        "cpu" : "TR3200"
+        "cpu" : "TR3200",
+        "ram" : 160
+      },
+      "movable" : {
+        "movable" : true
+      },
+      "collidable" : {
+        "shape" : "static_mesh",
+        "mesh" : "vidstand",
+        "disable_deactivation" : false
+      }
+    },
+    "vidstand3" : {
+      "id" : 1006,
+      "renderable" : {
+        "mesh" : "vidstand",
+        "shader" : "multi_notex",
+        "instanced_textures" : [true]
+      },
+      "movable" : {
+        "movable" : true
+      },
+      "display" : {
+        "instance_id" : 0,
+        "link_id" : 1005,
+        "slot" : 6,
+        "model" : "TDA"
       },
       "collidable" : {
         "shape" : "static_mesh",
@@ -128,15 +159,15 @@
     },
     "el1" : {
       "id" : 500,
-      "light" : {"enabled" : true, "color":[0.9,0.9,1.0], "radius":20, "shadow" : "depth-s" }
+      "light" : {"enabled" : true, "color":[0.7,0.1,0.1], "radius":20, "shadow" : "depth-s" }
     },
     "el2" : {
-      "id" : 501,
+      "id" : 10,
       "light" : {"enabled" : true, "color":[1,0.8,0.6], "radius":25 }
     },
     "el3" : {
       "id" : 502,
-      "light" : {"enabled" : true, "color":[1,1,1], "radius":25 }
+      "light" : {"enabled" : false, "color":[1,1,1], "radius":25 }
     }
   },
   "sounds" : [{

@@ -89,6 +89,7 @@
         {"render": "lighting"},
         {"draw-layer": null},
         {"bind-layer": "light-accum"},
+        {"bind-layer": "gbuf"},
         {"render": "post", "shader": "post-pass"},
         {"render": "gui"}
       ],
