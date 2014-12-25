@@ -78,6 +78,10 @@
         "shader" : "multi_notex",
         "instanced_textures" : [true]
       },
+      "keyboard" : {
+        "link_id" : 1004,
+        "slot" : 2
+      },
       "display" : {
         "instance_id" : 0,
         "link_id" : 1004,
@@ -88,7 +92,7 @@
         "movable" : true
       },
       "trillek-computer" : {
-        "rom" : "meisys.ffi",
+        "rom" : "firmware.ffi",
         "cpu" : "TR3200"
       },
       "collidable" : {
