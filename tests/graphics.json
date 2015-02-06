@@ -7,7 +7,8 @@
       },
       "multi_shader": {
         "vertex": "shade.v",
-        "fragment": {"filename": "common/assets/shaders/m_shade.frag"}
+        "fragment": {"filename": "common/assets/shaders/m_shade.frag"},
+        "attrbinding": {"pos": 0, "norm": 1, "color": 2, "tex1": 3, "boneIndex": 4, "boneWeight": 5}
       },
       "multi_notex": {
         "vertex": "shade.v",

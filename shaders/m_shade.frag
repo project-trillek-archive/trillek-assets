@@ -11,12 +11,16 @@ out vec4 out_col;
 out vec4 out_norm;
 
 uniform sampler2D texUnit;
+uniform int textured;
 
 void main(void)
 {
     vec4 tci;
 
     tci = texture(texUnit, ex_tex1);
+    if(textured == 0) {
+        tci = vec4(ex_color.xyz, 1.);
+    }
     if(tci == vec4(0)) {
         discard;
     }
