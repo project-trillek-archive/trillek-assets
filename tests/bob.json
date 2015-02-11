@@ -10,6 +10,18 @@
   "entities" : {
     "bob" : {
       "id" : 1000,
+	  "game-transform": {
+		"tx": 0.0,
+		"ty": 0.0,
+		"tz": -1.0,
+		"radians": true,
+		"rx": -1.5707,
+		"ry": 0.0,
+		"rz": 0.0,
+		"sx": 0.25,
+		"sy": 0.25,
+		"sz": 0.25
+	  },
       "renderable" : {
         "mesh" : "bob",
         "shader" : "multi_shader",
@@ -23,6 +35,18 @@
     },
     "steve" : {
       "id" : 1001,
+	  "game-transform": {
+		"tx": 6.68238,
+		"ty": 0.1,
+		"tz": 1.41796,
+		"radians": true,
+		"rx": 1.57906,
+		"ry": 1.5708,
+		"rz": -3.13333,
+		"sx": 0.25,
+		"sy": 0.25,
+		"sz": 0.25
+	  },
       "renderable" : {
         "mesh" : "bob",
         "shader" : "multi_shader",

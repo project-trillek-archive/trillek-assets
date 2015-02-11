@@ -1,11 +1,22 @@
 {
   "resource_file": "@resources.json",
-  "bob_entities": "@transforms.json",
   "graphics_config": "@graphics.json",
   "bob_entities": "@bob.json",
   "entities" : {
     "camera" : {
       "id" : 10,
+	  "game-transform": {
+		"tx": 0.0,
+		"ty": 1.0,
+		"tz": 1.5,
+		"radians": true,
+		"rx": 0.0,
+		"ry": -0.0,
+		"rz": 0.0,
+		"sx": 0.25,
+		"sy": 0.25,
+		"sz": 0.25
+	  },
       "collidable" : {
         "shape" : "capsule",
         "radius" : 0.3,
@@ -24,6 +35,18 @@
     },
     "ship" : {
       "id" : 1002,
+	  "game-transform": {
+		"tx": 0.0,
+		"ty": 0.0,
+		"tz": 10.0,
+		"radians": true,
+		"rx": 0.0,
+		"ry": 0.0,
+		"rz": 0.0,
+		"sx": 2.0,
+		"sy": 2.0,
+		"sz": 2.0
+	  },
       "renderable" : {
         "mesh" : "mothership",
         "shader" : "multi_shader"
@@ -41,6 +64,18 @@
     },
     "bob" : {
       "id" : 1000,
+	  "game-transform": {
+		"tx": 0.0,
+		"ty": 0.0,
+		"tz": -1.0,
+		"radians": true,
+		"rx": -1.5707,
+		"ry": 0.0,
+		"rz": 0.0,
+		"sx": 0.25,
+		"sy": 0.25,
+		"sz": 0.25
+	  },
       "camera" : {
         "mesh" : "bob"
       },
@@ -61,6 +96,18 @@
     },
     "hanger" : {
       "id" : 1003,
+	  "game-transform": {
+		"tx": 0.0,
+		"ty": 0.0,
+		"tz": 0.0,
+		"radians": true,
+		"rx": 0.0,
+		"ry": -0.0,
+		"rz": 0.0,
+		"sx": 1.0,
+		"sy": 1.0,
+		"sz": 1.0
+	  },
       "renderable" : {
         "mesh" : "hanger",
         "shader" : "multi_shader"
@@ -73,6 +120,18 @@
     },
     "vidstand" : {
       "id" : 1004,
+	  "game-transform": {
+		"tx": 0.0,
+		"ty": 0.0,
+		"tz": 0.0,
+		"radians": true,
+		"rx": 0.0,
+		"ry": -0.0,
+		"rz": 0.0,
+		"sx": 1.0,
+		"sy": 1.0,
+		"sz": 1.0
+	  },
       "renderable" : {
         "mesh" : "vidstand",
         "shader" : "multi_notex",
@@ -110,6 +169,18 @@
     },
     "vidstand2" : {
       "id" : 1005,
+	  "game-transform": {
+		"tx": -2.0,
+		"ty": 0.0,
+		"tz": 0.0,
+		"radians": true,
+		"rx": 0.0,
+		"ry": -0.0,
+		"rz": 0.0,
+		"sx": 1.0,
+		"sy": 1.0,
+		"sz": 1.0
+	  },
       "renderable" : {
         "mesh" : "vidstand",
         "shader" : "multi_notex",
@@ -141,6 +212,18 @@
     },
     "vidstand3" : {
       "id" : 1006,
+	  "game-transform": {
+		"tx": -2.0,
+		"ty": 0.0,
+		"tz": 1.0,
+		"radians": true,
+		"rx": 0.0,
+		"ry": -0.0,
+		"rz": 0.0,
+		"sx": 1.0,
+		"sy": 1.0,
+		"sz": 1.0
+	  },
       "renderable" : {
         "mesh" : "vidstand",
         "shader" : "multi_notex",
@@ -163,6 +246,18 @@
     },
     "el1" : {
       "id" : 500,
+	  "game-transform": {
+		"tx": 0.0,
+		"ty": 2.8,
+		"tz": 0.0,
+		"radians": true,
+		"rx": 0.0,
+		"ry": -0.0,
+		"rz": 0.0,
+		"sx": 1.0,
+		"sy": 1.0,
+		"sz": 1.0
+	  },
       "light" : {"enabled" : true, "color":[0.7,0.1,0.1], "radius":20, "shadow" : "depth-s" }
     },
     "el2" : {
@@ -171,6 +266,18 @@
     },
     "el3" : {
       "id" : 502,
+	  "game-transform": {
+		"tx": -3.0,
+		"ty": 2.0,
+		"tz": 13.0,
+		"radians": true,
+		"rx": 0.0,
+		"ry": -0.0,
+		"rz": 0.0,
+		"sx": 1.0,
+		"sy": 1.0,
+		"sz": 1.0
+	  },
       "light" : {"enabled" : false, "color":[1,1,1], "radius":25 }
     }
   },
