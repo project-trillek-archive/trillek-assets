@@ -2,8 +2,9 @@
   "resource_file": "@resources.json",
   "graphics_config": "@graphics.json",
   "bob_entities": "@bob.json",
-  "entities" : {
-    "camera" : {
+  "entities" : [
+    {
+	  "name": "camera",
       "id" : 10,
 	  "game-transform": {
 		"tx": 0.0,
@@ -33,7 +34,8 @@
       "camera" : {
       }
     },
-    "ship" : {
+	{
+      "name": "ship",
       "id" : 1002,
 	  "game-transform": {
 		"tx": 0.0,
@@ -62,7 +64,8 @@
       "velocity" :{
       }
     },
-    "bob" : {
+    {
+	  "name": "bob",
       "id" : 1000,
 	  "game-transform": {
 		"tx": 0.0,
@@ -87,14 +90,16 @@
         "tank" : 1006
       }
     },
-    "oxygen_bottle" : {
+    {
+	  "name": "oxygen_bottle",
       "id": 1006,
       "oxygen-rate" : {
         "volume": 0.5,
         "rate": 0.21
       }
     },
-    "hanger" : {
+    {
+	  "name": "hanger",
       "id" : 1003,
 	  "game-transform": {
 		"tx": 0.0,
@@ -118,7 +123,8 @@
         "disable_deactivation" : false
       }
     },
-    "vidstand" : {
+    {
+	  "name": "vidstand",
       "id" : 1004,
 	  "game-transform": {
 		"tx": 0.0,
@@ -160,14 +166,16 @@
         "disable_deactivation" : false
       }
     },
-    "compute-1" : {
+    {
+	  "name": "compute-1",
       "id" : 9000,
       "trillek-computer" : {
         "rom" : "meisys.ffi",
         "cpu" : "TR3200"
       }
     },
-    "vidstand2" : {
+    {
+	  "name": "vidstand2",
       "id" : 1005,
 	  "game-transform": {
 		"tx": -2.0,
@@ -210,7 +218,8 @@
         "disable_deactivation" : false
       }
     },
-    "vidstand3" : {
+    {
+	  "name": "vidstand3",
       "id" : 1006,
 	  "game-transform": {
 		"tx": -2.0,
@@ -244,7 +253,8 @@
         "disable_deactivation" : false
       }
     },
-    "el1" : {
+    {
+	  "name": "el1",
       "id" : 500,
 	  "game-transform": {
 		"tx": 0.0,
@@ -260,11 +270,13 @@
 	  },
       "light" : {"enabled" : true, "color":[0.7,0.1,0.1], "radius":20, "shadow" : "depth-s" }
     },
-    "el2" : {
+    {
+	  "name": "el2",
       "id" : 10,
       "light" : {"enabled" : true, "color":[1,0.8,0.6], "radius":25 }
     },
-    "el3" : {
+    {
+	  "name": "el3",
       "id" : 502,
 	  "game-transform": {
 		"tx": -3.0,
@@ -280,7 +292,7 @@
 	  },
       "light" : {"enabled" : false, "color":[1,1,1], "radius":25 }
     }
-  },
+  ],
   "sounds" : [{
       "id" : "music_track_1",
       "src" : "common/assets/audio/music/stage7 - 8 bit mentality.ogg",
