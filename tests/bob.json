@@ -4,7 +4,7 @@
       "bob" : {"filename":"common/assets/bob/bob_lamp_update.md5mesh"}
     },
     "MD5Anim" : {
-      "bob_animtion" : {"filename":"common/assets/bob/bob_lamp_update.md5anim"}
+      "bob_animation" : {"filename":"common/assets/bob/bob_lamp_update.md5anim"}
     }
   },
   "entities" : {
