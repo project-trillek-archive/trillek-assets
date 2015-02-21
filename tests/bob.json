@@ -14,7 +14,7 @@
         "mesh" : "bob",
         "shader" : "multi_shader",
         "shape" : "static_mesh",
-        "animation" : "bob_animtion"
+        "animation" : "bob_animation"
       },
       "collidable" : {
         "mesh" : "bob",
@@ -26,7 +26,7 @@
       "renderable" : {
         "mesh" : "bob",
         "shader" : "multi_shader",
-        "animation" : "bob_animtion"
+        "animation" : "bob_animation"
       },
       "collidable" : {
         "shape" : "static_mesh",
