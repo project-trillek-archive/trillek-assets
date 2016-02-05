@@ -4,7 +4,7 @@
       "bob" : {"filename":"common/assets/bob/bob_lamp_update.md5mesh"}
     },
     "MD5Anim" : {
-      "bob_animtion" : {"filename":"common/assets/bob/bob_lamp_update.md5anim"}
+      "bob_animation" : {"filename":"common/assets/bob/bob_lamp_update.md5anim"}
     }
   },
   "entities" : {
@@ -14,7 +14,7 @@
         "mesh" : "bob",
         "shader" : "multi_shader",
         "shape" : "static_mesh",
-        "animation" : "bob_animtion"
+        "animation" : "bob_animation"
       },
       "collidable" : {
         "mesh" : "bob",
@@ -26,7 +26,7 @@
       "renderable" : {
         "mesh" : "bob",
         "shader" : "multi_shader",
-        "animation" : "bob_animtion"
+        "animation" : "bob_animation"
       },
       "collidable" : {
         "shape" : "static_mesh",
